@@ -2,9 +2,22 @@ const GoogleSpreadsheet = require('google-spreadsheet');
 const { promisify } = require('util');
 const dotenv = require('dotenv');
 dotenv.config();
-const config = require('./config');
+const config = require('../../config');
 
-async function accessSpreadsheet () {
+module.exports = async (req, res) => {
+    try {
+        const value = await accessSpreadsheet();
+
+        return res.render('landing', { value });
+    } catch (err) {
+        console.log('==================');
+        console.log('render error', err);
+        console.log('==================');
+        return res.render('error');
+    };
+};
+
+async function accessSpreadsheet() {
     try {
         const doc = new GoogleSpreadsheet('1Khj2u55fpyr7pjKxJKu8HQzmj6UD5x2fTAxpsme0wcM');
         await promisify(doc.useServiceAccountAuth)(config);
@@ -16,12 +29,11 @@ async function accessSpreadsheet () {
             "min-col": 19,
             "max-col": 27
         });
-        console.log(cells);
+        const one = JSON.stringify(cells[0]);
+        return one;
     } catch (err) {
         console.log('==================');
         console.log('error', err);
         console.log('==================');
     }
 }
-
-accessSpreadsheet();

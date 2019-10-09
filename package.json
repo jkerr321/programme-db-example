@@ -2,7 +2,7 @@
   "name": "andrews-garden",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^8.1.0",
-    "google-spreadsheet": "^2.0.8"
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "google-spreadsheet": "^2.0.8",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3",
+    "dotenv": "^8.1.0"
   }
 }
