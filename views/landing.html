@@ -1,4 +1,11 @@
 <div>
     hello world
-    {{value}}
+    <!-- {{value}} -->
+</div>
+<div class="garden-grid">
+    {{#each gridItems}}
+    {{this.key}}
+    <div style="grid-area:{{@key}};background-color:{{this}}"></div>
+    {{/each}}
+    <div class="grass"></div>
 </div>
