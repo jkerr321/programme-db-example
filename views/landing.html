@@ -1,11 +1,104 @@
-<div>
-    hello world
-    <!-- {{value}} -->
+<div class="layout">
+    <div class="header">
+        <a href="">Update Data</a>
+        <a href="">Autumn 2019</a>
+        <a href="">Winter 2020</a>
+    </div>
+    <div class="garden">
+            <div class="col-name">
+                <div class="name-item">A</div>
+                <div class="name-item">B</div>
+                <div class="name-item">C</div>
+                <div class="name-item">D</div>
+                <div class="name-item">E</div>
+                <div class="name-item">F</div>
+                <div class="name-item">G</div>
+                <div class="name-item">H</div>
+                <div class="name-item">J</div>
+                <div class="name-item">K</div>
+                <div class="name-item">L</div>
+                <div class="name-item">M</div>
+                <div class="name-item">N</div>
+                <div class="name-item">P</div>
+                <div class="name-item">Q</div>
+                <div class="name-item">R</div>
+            </div>
+            <div class="row-name">
+                <div class="name-item">1</div>
+                <div class="name-item">2</div>
+                <div class="name-item">3</div>
+                <div class="name-item">4</div>
+                <div class="name-item">5</div>
+                <div class="name-item">6</div>
+                <div class="name-item">7</div>
+                <div class="name-item">8</div>
+                <div class="name-item">9</div>
+                <div class="name-item">10</div>
+                <div class="name-item">11</div>
+                <div class="name-item">12</div>
+                <div class="name-item">13</div>
+                <div class="name-item">14</div>
+                <div class="name-item">15</div>
+                <div class="name-item">16</div>
+                <div class="name-item">17</div>
+                <div class="name-item">18</div>
+                <div class="name-item">19</div>
+            </div>
+        <div class="borders-grid">
+            {{#each gridItems}}
+            <div class="grid-plant {{this.perennialAnnual}}" style="grid-area:{{this.position}};background-color:{{this.colour}}"
+            data-position="{{this.position}}" 
+            data-common-name="{{this.commonName}}" 
+            data-latin-name="{{this.latinName}}" 
+            data-image="{{this.image}}" 
+            data-link="{{this.link}}" 
+            data-planted-date="{{this.plantedDate}}"
+            ></div>
+            {{/each}}
+            <div class="grass">
+                <img src="./background.png" alt="Andrew's Garden Logo over grass section of the garden">
+            </div>
+        </div>
+        <div class="decking-grid">
+            {{#each gridItems}}
+            <div class="grid-plant {{this.perennialAnnual}}" style="grid-area:{{this.position}};background-color:{{this.colour}}"></div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="table">
+        <div class="js-{{this.position}} modal">
+            <div class="modal-content">
+                <div class="modal-common-name"></div>
+                <div class="modal-latin-name"></div>
+                <div class="modal-image"></div>
+                <div class="modal-planted-date"></div>
+                <div class="modal-link"></div>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <th>Position</th>
+                <th>Common Name</th>
+                <th>Latin Name</th>
+                <th>Perennial or Annual</th>
+                <th>Planted Date</th>
+                <th>Flowering Period</th>
+                <th>Link</th>
+                <th>Notes</th>
+            </tr>
+            {{#each gridItems}}
+            <tr>
+                <th>{{this.position}}</th>
+                <th>{{this.commonName}}</th>
+                <th>{{this.latinName}}</th>
+                <th>{{this.perennialAnnual}}</th>
+                <th>{{this.plantedDate}}</th>
+                <th>{{this.floweringPeriod}}</th>
+                <th>{{this.link}}</th>
+                <th>{{this.notes}}</th>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
 </div>
-<div class="garden-grid">
-    {{#each gridItems}}
-    {{this.key}}
-    <div style="grid-area:{{@key}};background-color:{{this}}"></div>
-    {{/each}}
-    <div class="grass"></div>
-</div>
+<!-- {{gridItems}} -->
