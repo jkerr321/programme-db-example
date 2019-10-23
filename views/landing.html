@@ -1,8 +1,7 @@
 <div class="layout">
     <div class="header">
-        <a href="">Update Data</a>
-        <a href="">Autumn 2019</a>
-        <a href="">Winter 2020</a>
+        <button class="button-toggle-view" type="button">Toggle View</button>
+        <a href="https://docs.google.com/spreadsheets/d/1Khj2u55fpyr7pjKxJKu8HQzmj6UD5x2fTAxpsme0wcM/edit#gid=590538584" target="_blank">Update Data</a>
     </div>
     <div class="garden">
             <div class="col-name">
@@ -50,6 +49,7 @@
             data-position="{{this.position}}" 
             data-common-name="{{this.commonName}}" 
             data-latin-name="{{this.latinName}}" 
+            data-perennial-annual="{{this.perennialAnnual}}" 
             data-image="{{this.image}}" 
             data-link="{{this.link}}" 
             data-planted-date="{{this.plantedDate}}"
@@ -61,25 +61,34 @@
         </div>
         <div class="decking-grid">
             {{#each gridItems}}
-            <div class="grid-plant {{this.perennialAnnual}}" style="grid-area:{{this.position}};background-color:{{this.colour}}"></div>
+            <div class="grid-plant {{this.perennialAnnual}}" style="grid-area:{{this.position}};background-color:{{this.colour}}"
+            data-position="{{this.position}}" 
+            data-common-name="{{this.commonName}}" 
+            data-latin-name="{{this.latinName}}" 
+            data-perennial-annual="{{this.perennialAnnual}}"
+            data-image="{{this.image}}" 
+            data-link="{{this.link}}" 
+            data-planted-date="{{this.plantedDate}}"
+            ></div>
             {{/each}}
         </div>
     </div>
     <div class="table">
-        <div class="js-{{this.position}} modal">
+        <div class="js-{{this.position}} modal hidden">
             <div class="modal-content">
                 <div class="modal-common-name"></div>
                 <div class="modal-latin-name"></div>
+                <div class="modal-perennial-annual"></div>
                 <div class="modal-image"></div>
                 <div class="modal-planted-date"></div>
                 <div class="modal-link"></div>
             </div>
         </div>
-        <table>
+        <table class="hidden">
             <tr>
                 <th>Position</th>
-                <th>Common Name</th>
                 <th>Latin Name</th>
+                <th>Common Name</th>
                 <th>Perennial or Annual</th>
                 <th>Planted Date</th>
                 <th>Flowering Period</th>
@@ -88,17 +97,28 @@
             </tr>
             {{#each gridItems}}
             <tr>
-                <th>{{this.position}}</th>
-                <th>{{this.commonName}}</th>
-                <th>{{this.latinName}}</th>
-                <th>{{this.perennialAnnual}}</th>
-                <th>{{this.plantedDate}}</th>
-                <th>{{this.floweringPeriod}}</th>
-                <th>{{this.link}}</th>
-                <th>{{this.notes}}</th>
+                <td>{{this.position}}</td>
+                <td>
+                    {{#if this.link}}
+                    <a href="{{this.link}}">{{this.latinName}}</a>
+                    {{else}}
+                    {{this.latinName}}
+                    {{/if}}
+                </td>
+                <td>{{this.commonName}}</td>
+                <td>{{this.perennialAnnual}}</td>
+                <td>{{this.plantedDate}}</td>
+                <td>{{this.floweringPeriod}}</td>
+                <td>{{this.notes}}</td>
             </tr>
             {{/each}}
         </table>
+    </div>
+    <div class=footer>
+        <div class="footer-content">
+            <a href="">Autumn 2019</a>
+            <a href="">Winter 2020</a>
+        </div>
     </div>
 </div>
 <!-- {{gridItems}} -->

@@ -11,5 +11,4 @@ TODO
 - tidy up
 
 Front end
-- modal - indicate which plant has been selected
-- add cursor on hover
+- make modal work on hover
