@@ -29,6 +29,7 @@ async function accessSpreadsheet() {
         const values = rows.reduce((acc, row) => {
             if (row.position) {
                 acc.push({
+                    isDecking: `${row.position}`.includes('17') || `${row.position}`.includes('18') || `${row.position}`.includes('19'),
                     position: row.position,
                     commonName: row.commonname,
                     latinName: row.latinname,

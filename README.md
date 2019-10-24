@@ -4,7 +4,6 @@ TODO
 - style button
 - style links
 - style modal
-- fix bug with extra plants appearing in decking
 - readme
 - tidy up data - capitals etc
 - logic for seasons

@@ -47,6 +47,7 @@
         </div>
         <div class="borders-grid">
             {{#each gridItems}}
+            {{#unless this.isDecking}}
             <div class="grid-plant {{this.perennialAnnual}}" style="grid-area:{{this.position}};background-color:{{this.colour}}"
             data-position="{{this.position}}" 
             data-common-name="{{this.commonName}}" 
@@ -57,6 +58,7 @@
             data-planted-date="{{this.plantedDate}}" 
             data-colour="{{this.colour}}"
             ></div>
+            {{/unless}}
             {{/each}}
             <div class="grass">
                 <img src="./background.png" alt="Andrew's Garden Logo over grass section of the garden">
@@ -64,6 +66,7 @@
         </div>
         <div class="decking-grid">
             {{#each gridItems}}
+            {{#if this.isDecking}}
             <div class="grid-plant {{this.perennialAnnual}}" style="grid-area:{{this.position}};background-color:{{this.colour}}"
             data-position="{{this.position}}" 
             data-common-name="{{this.commonName}}" 
@@ -74,6 +77,7 @@
             data-planted-date="{{this.plantedDate}}"
             data-colour="{{this.colour}}"
             ></div>
+            {{/if}}
             {{/each}}
         </div>
     </div>
@@ -102,7 +106,7 @@
                 <td>{{this.position}}</td>
                 <td>
                     {{#if this.link}}
-                    <a href="{{this.link}}">{{this.latinName}}</a>
+                    <a href="{{this.link}}" target="_blank">{{this.latinName}}</a>
                     {{else}}
                     {{this.latinName}}
                     {{/if}}
