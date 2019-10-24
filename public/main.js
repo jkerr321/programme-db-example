@@ -32,13 +32,20 @@ const populatePlantData = (event) => {
 
     modalCommonName.innerHTML = commonName || '';
     modalLatinName.innerHTML = latinName || '';
-    modalPerennialAnnual.innerHTML = perennialAnnual || '';
     modalContent.setAttribute('style', `border: 20px solid ${colour}`)
 
     if (plantedDate) {
         modalPlantedDate.innerHTML = `Planted ${plantedDate}`;
     } else {
         modalPlantedDate.innerHTML = '';
+    }
+
+    if (perennialAnnual === 'P') {
+        modalPerennialAnnual.innerHTML = 'Perennial';
+    } else if (perennialAnnual === 'A') {
+        modalPerennialAnnual.innerHTML = 'Annual';
+    } else {
+        modalPerennialAnnual.innerHTML = '';
     }
 
     if (image) {
@@ -55,16 +62,12 @@ const populatePlantData = (event) => {
 };
 
 function showModal(event, plant) {
+    //hide table if it's in view
+    if (!table.classList.contains('hidden')) {
+        table.classList.add('hidden');
+    }
     populatePlantData(event);
     modal.classList.remove('hidden');
-}
-
-function hideModal() {
-    if (event.relatedTarget === 'div.modal' || event.relatedTarget === 'div.borders-grid') {
-        return
-    } else {
-        modal.classList.add('hidden');
-    }
 }
 
 function highlightGridPlant(plant) {

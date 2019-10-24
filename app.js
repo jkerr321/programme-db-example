@@ -18,6 +18,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', renderLandingPage);
 
+console.log('==================');
+console.log('process.env.PORT', process.env.PORT);
+console.log('==================');
+
 app.listen(process.env.PORT || 8001, () => {
     console.log('andrews-garden: listening on port 8001');
 });

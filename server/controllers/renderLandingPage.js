@@ -33,7 +33,7 @@ async function accessSpreadsheet() {
                     position: row.position,
                     commonName: row.commonname,
                     latinName: row.latinname,
-                    perennialAnnual: row.perennialannual,
+                    perennialAnnual: `${row.perennialannual}`.substr(0,1),
                     plantedDate: row.planteddate,
                     floweringPeriod: row.floweringperiod,
                     colour: row.colour,

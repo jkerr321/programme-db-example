@@ -1,14 +1,11 @@
 body {
-  /* background-image: url('./big-background.jpg'); */
-  background-repeat: no-repeat;
-  background-size: cover;
   font-family: 'PT Mono', monospace;
 }
 
 .layout {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 35px 1fr 35px;
+  grid-template-rows: repeat(3, min-content);
   grid-template-areas: 
     "header header"
     "garden info"
@@ -21,7 +18,7 @@ body {
   justify-self: center;
   display: inline-grid;
   grid-template-columns: auto;
-  grid-template-rows: 35px 565px 120px;
+  grid-template-rows: repeat(3, min-content);
   grid-template-areas: 
     ". col-name"
     "row-name-borders borders-grid"
@@ -68,6 +65,7 @@ body {
 
 .header {
   grid-area: header;
+  text-align: center;
 }
 
 .col-name {
@@ -119,11 +117,11 @@ body {
 	box-shadow: 0px 0px 10px;
 }
 
-.Annual {
+.A {
   border: 2px dotted black;
 }
 
-.Perennial {
+.P {
   border: 1px solid black;
 }
 
@@ -138,21 +136,40 @@ body {
 }
 
 .footer-content {
-  margin-top: 24px;
+  margin-top: 56px;
+}
+
+.footer-content a {
+  margin: 0 10px;
 }
 
 table {
   margin: 20px 40px 20px 0;
   font-size: 14px;
   grid-area: info;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 0.5rem;
+  text-align: left;
+}
+
+th {
+  background-color: ghostwhite;
+  border-bottom: 2px dotted #131313;
+}
+
+td {
+  border: 0.5px dotted #131313;
 }
 
 .modal {
   grid-area: info;
   justify-self: center;
   width: 60%;
-  margin: 54px;
-  border: 1.5px dotted #333333;
+  margin: 57px 30px;
+  border: 1.5px dotted #131313;
 }
 
 .modal-content {
@@ -186,4 +203,29 @@ table {
 
 .hidden {
   display: none;
+}
+
+button {
+  height: 45px;
+  width: 168px;
+  color: #131313;
+  font-family: 'Bangers';
+  border: 1.5px dotted #131313;
+  font-size: 24px;
+  margin: 20px auto 24px;
+}
+
+button:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #131313;
+}
+
+.update-link {
+  text-align: right;
+  margin: 8px 12px 0;
+}
+
+a {
+  color: #131313;
 }

@@ -1,7 +1,9 @@
 <div class="layout">
     <div class="header">
+        <div class="update-link">
+            <a href="https://docs.google.com/spreadsheets/d/1Khj2u55fpyr7pjKxJKu8HQzmj6UD5x2fTAxpsme0wcM/edit#gid=590538584" target="_blank">Update Data</a>
+        </div>
         <button class="button-toggle-view" type="button">Toggle View</button>
-        <a href="https://docs.google.com/spreadsheets/d/1Khj2u55fpyr7pjKxJKu8HQzmj6UD5x2fTAxpsme0wcM/edit#gid=590538584" target="_blank">Update Data</a>
     </div>
     <div class="garden">
         <div class="col-name">
@@ -82,7 +84,7 @@
         </div>
     </div>
     <div class="info">
-        <div class="js-{{this.position}} modal">
+        <div class="modal">
             <div class="modal-content">
                 <div class="modal-latin-name"></div>
                 <div class="modal-common-name">Click on a spot to find out more :)</div>
@@ -93,36 +95,40 @@
             </div>
         </div>
         <table class="hidden">
-            <tr>
-                <th>Position</th>
-                <th>Latin Name</th>
-                <th>Common Name</th>
-                <th>Perennial or Annual</th>
-                <th>Planted Date</th>
-                <th>Notes</th>
-            </tr>
-            {{#each gridItems}}
-            <tr>
-                <td>{{this.position}}</td>
-                <td>
-                    {{#if this.link}}
-                    <a href="{{this.link}}" target="_blank">{{this.latinName}}</a>
-                    {{else}}
-                    {{this.latinName}}
-                    {{/if}}
-                </td>
-                <td>{{this.commonName}}</td>
-                <td>{{this.perennialAnnual}}</td>
-                <td>{{this.plantedDate}}</td>
-                <td>{{this.notes}}</td>
-            </tr>
-            {{/each}}
+            <thead>
+                <tr>
+                    <th>Grid</th>
+                    <th>Latin Name</th>
+                    <th>Common Name</th>
+                    <th>P / A</th>
+                    <th>Planted Date</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each gridItems}}
+                <tr>
+                    <td>{{this.position}}</td>
+                    <td>
+                        {{#if this.link}}
+                        <a href="{{this.link}}" target="_blank">{{this.latinName}}</a>
+                        {{else}}
+                        {{this.latinName}}
+                        {{/if}}
+                    </td>
+                    <td>{{this.commonName}}</td>
+                    <td>{{this.perennialAnnual}}</td>
+                    <td>{{this.plantedDate}}</td>
+                    <td>{{this.notes}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
         </table>
     </div>
     <div class=footer>
         <div class="footer-content">
-            <a href="">Autumn 2019</a>
-            <a href="">Winter 2020</a>
+            <a href="">Winter 2019</a>
+            <a href="">Spring 2020</a>
         </div>
     </div>
 </div>
