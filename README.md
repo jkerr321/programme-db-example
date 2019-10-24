@@ -1,14 +1,15 @@
 TODO
 
+- fonts
+- style button
+- style links
+- style modal
+- fix bug with extra plants appearing in decking
 - readme
-- add logo
 - tidy up data - capitals etc
-- seasons
-- styling
+- logic for seasons
 - front end transition
-- individual plant view
 - gallery
 - tidy up
-
-Front end
+- add colour chart to data
 - make modal work on hover

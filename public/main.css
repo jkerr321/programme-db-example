@@ -2,6 +2,7 @@ body {
   /* background-image: url('./big-background.jpg'); */
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: 'PT Mono', monospace;
 }
 
 .layout {
@@ -10,7 +11,7 @@ body {
   grid-template-rows: 35px 1fr 35px;
   grid-template-areas: 
     "header header"
-    "garden table"
+    "garden info"
     "footer footer";
 }
 
@@ -20,14 +21,15 @@ body {
   justify-self: center;
   display: inline-grid;
   grid-template-columns: auto;
-  grid-template-rows: 35px 560px 105px;
+  grid-template-rows: 35px 565px 120px;
   grid-template-areas: 
     ". col-name"
-    "row-name borders-grid"
-    "row-name decking-grid";
+    "row-name-borders borders-grid"
+    "row-name-decking decking-grid";
 }
 
 .borders-grid {
+  border: 1.5px dotted #333333;
   grid-area: borders-grid;
   display: inline-grid;
   grid-template-columns: repeat(16, 35px);
@@ -52,6 +54,8 @@ body {
 }
 
 .decking-grid {
+  border: 1.5px dotted #333333;
+  margin-top: 8px;
   grid-area: decking-grid;
   display: inline-grid;
   grid-template-columns: repeat(16, 35px);
@@ -60,7 +64,6 @@ body {
     "A17 B17 C17 D17 E17 F17 G17 H17 J17 K17 L17 M17 N17 P17 Q17 R17"
     "A18 B18 C18 D18 E18 F18 G18 H18 J18 K18 L18 M18 N18 P18 Q18 R18"
     "A19 B19 C19 D19 E19 F19 G19 H19 J19 K19 L19 M19 N19 P19 Q19 R19";
-  margin-top: 4px;
 }
 
 .header {
@@ -68,26 +71,40 @@ body {
 }
 
 .col-name {
+  background-color: ghostwhite;
   grid-area: col-name;
   display: inline-grid;
   grid-template-columns: repeat(16, 35px);
   grid-template-rows: 35px;
 }
 
-.row-name {
-  grid-area: row-name;
+.row-name-borders {
+  background-color: ghostwhite;
+  grid-area: row-name-borders;
   display: inline-grid;
-  grid-template-rows: repeat(19, 35px);
+  grid-template-rows: repeat(16, 35px);
+  grid-template-columns: 35px;
+}
+
+.row-name-decking {
+  background-color: ghostwhite;
+  margin-top: 8px;
+  grid-area: row-name-decking;
+  display: inline-grid;
+  grid-template-rows: repeat(3, 35px);
   grid-template-columns: 35px;
 }
 
 .grass {
+  border: 1.5px dotted #333333;
+  border-bottom: none;
+  background-color: white;
   grid-area: grass;
-  background-color: green;
 }
 
 .grass img {
-    width: 100%;
+    width: 90%;
+    padding: 18px;
 }
 
 .grid-plant {
@@ -125,20 +142,46 @@ body {
 }
 
 table {
-  margin-top: 20px;
-  grid-area: table;
+  margin: 20px 40px 20px 0;
+  font-size: 14px;
+  grid-area: info;
 }
 
 .modal {
-  grid-area: table;
+  grid-area: info;
   justify-self: center;
   width: 60%;
-  margin: 50px auto;
-  border: 1px solid black;
+  margin: 54px;
+  border: 1.5px dotted #333333;
 }
 
 .modal-content {
+  padding: 24px;
+  border: 20px solid green;
   text-align: center;
+}
+
+.modal-image img {
+  max-width: 80%;
+}
+
+.modal-latin-name {
+  font-family: 'Bangers';
+  margin: 20px 12px;
+  font-size: 44px;
+}
+
+.modal-common-name {
+  font-size: 28px;
+}
+
+.modal-perennial-annual {
+  font-size: 24px;
+  margin: 12px auto;
+}
+
+.modal-link {
+  margin: 20px auto 24px;
 }
 
 .hidden {

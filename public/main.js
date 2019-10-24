@@ -20,6 +20,7 @@ const populatePlantData = (event) => {
     const image = event.srcElement.attributes['data-image'].value;
     const plantedDate = event.srcElement.attributes['data-planted-date'].value;
     const link = event.srcElement.attributes['data-link'].value;
+    const colour = event.srcElement.attributes['data-colour'].value;
 
     const modalCommonName = document.querySelector('.modal-common-name');
     const modalLatinName = document.querySelector('.modal-latin-name');
@@ -27,10 +28,12 @@ const populatePlantData = (event) => {
     const modalImage = document.querySelector('.modal-image');
     const modalPlantedDate = document.querySelector('.modal-planted-date');
     const modalLink = document.querySelector('.modal-link');
+    const modalContent = document.querySelector('.modal-content');
 
     modalCommonName.innerHTML = commonName || '';
     modalLatinName.innerHTML = latinName || '';
     modalPerennialAnnual.innerHTML = perennialAnnual || '';
+    modalContent.setAttribute('style', `border: 20px solid ${colour}`)
 
     if (plantedDate) {
         modalPlantedDate.innerHTML = `Planted ${plantedDate}`;
