@@ -1,7 +1,5 @@
 const GoogleSpreadsheet = require('google-spreadsheet');
 const { promisify } = require('util');
-const dotenv = require('dotenv');
-dotenv.config();
 const config = require('../../config');
 
 module.exports = async (req, res) => {
@@ -44,9 +42,6 @@ async function accessSpreadsheet() {
             }
             return acc;
         }, [])
-        console.log('==================');
-        console.log('JSON.stringify(values)', JSON.stringify(values));
-        console.log('==================');
         return values;
     } catch (err) {
         console.log('==================');
