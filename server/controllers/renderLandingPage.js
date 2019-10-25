@@ -1,5 +1,7 @@
 const GoogleSpreadsheet = require('google-spreadsheet');
 const { promisify } = require('util');
+const dotenv = require('dotenv');
+dotenv.config();
 const config = require('../../config');
 
 module.exports = async (req, res) => {
