@@ -1,7 +1,7 @@
 const modal = document.querySelector('.modal');
 const table = document.querySelector('table');
 const triggers = document.querySelectorAll('.grid-plant');
-const toggle = document.querySelector('.button-toggle-view');
+const toggle = document.querySelector('.js-button-toggle-view');
 
 const toggleView = () => {
     if (table.classList.contains('hidden')) {
