@@ -18,13 +18,6 @@ module.exports = async (req, res) => {
 
 async function accessSpreadsheet() {
     try {
-        console.log('==================');
-        console.log('process.env.private_key', process.env.private_key);
-        console.log('==================');
-        
-        console.log('==================');
-        console.log('config.private_key', config.private_key);
-        console.log('==================');
         const doc = new GoogleSpreadsheet('1Khj2u55fpyr7pjKxJKu8HQzmj6UD5x2fTAxpsme0wcM');
         await promisify(doc.useServiceAccountAuth)(config);
         const info = await promisify(doc.getInfo)();
