@@ -22,6 +22,7 @@ async function accessSpreadsheet() {
         await promisify(doc.useServiceAccountAuth)(config);
         const info = await promisify(doc.getInfo)();
         const sheet = info.worksheets[0];
+        // info.worksheets[0].title); //==sheet name
         const rows = await promisify(sheet.getRows)({
             "offset": 1,
             "limit": 300

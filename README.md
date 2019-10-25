@@ -1,7 +1,6 @@
 TODO
 
 Critical
-- hosting
 - logic for seasons
 
 - readme

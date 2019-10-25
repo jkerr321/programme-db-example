@@ -229,3 +229,26 @@ button:hover {
 a {
   color: #131313;
 }
+
+/* Little bit of responsiveness */
+@media (max-width: 900px) {
+  .layout {
+    display: grid;
+    grid-template-rows: repeat(4, min-content);
+    grid-template-columns: none;
+    grid-template-areas: 
+      "header"
+      "garden"
+      "info"
+      "footer";
+  }
+
+  .modal {
+    margin: 57px auto;
+  }
+
+  table {
+    margin: 57px auto;
+  }
+
+}
