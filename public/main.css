@@ -66,6 +66,12 @@ body {
 .header {
   grid-area: header;
   text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, min-content);
+  grid-template-areas:
+  "header-left header-right"
+  "header-centre header-centre"
 }
 
 .col-name {
@@ -221,9 +227,20 @@ button:hover {
   background-color: #131313;
 }
 
-.update-link {
+.header-centre {
+  grid-area: header-centre;
+}
+
+.header-right {
+  grid-area: header-right;
   text-align: right;
   margin: 8px 12px 0;
+}
+
+.header-left {
+  grid-area: header-left;
+  text-align: left;
+  margin: 8px 0 0 12px;
 }
 
 a {
