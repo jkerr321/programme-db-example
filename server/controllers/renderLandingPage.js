@@ -2,14 +2,6 @@ const GoogleSpreadsheet = require('google-spreadsheet');
 const { promisify } = require('util');
 const config = require('../../config');
 
-console.log('==================');
-console.log('config.private_key', config.private_key);
-console.log('==================');
-console.log('==================');
-console.log('config.private_key_her', config.private_key_her);
-console.log('==================');
-
-
 module.exports = async (req, res) => {
     try {
         const gridItems = await accessSpreadsheet();
@@ -18,6 +10,10 @@ module.exports = async (req, res) => {
         console.log('==================');
         console.log('render error', err);
         console.log('==================');
+        console.log('==================');
+        console.log('config.private_key', config.private_key);
+        console.log('==================');
+        
         return res.render('error'); //TODO
     };
 };
