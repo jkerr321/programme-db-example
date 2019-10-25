@@ -9,11 +9,7 @@ module.exports = async (req, res) => {
     } catch (err) {
         console.log('==================');
         console.log('render error', err);
-        console.log('==================');
-        console.log('==================');
-        console.log('config.private_key', config.private_key);
-        console.log('==================');
-        
+        console.log('==================');        
         return res.render('error'); //TODO
     };
 };
@@ -48,6 +44,10 @@ async function accessSpreadsheet() {
         }, [])
         return values;
     } catch (err) {
+        console.log('==================');
+        console.log('config.private_key', config.private_key);
+        console.log('==================');
+
         console.log('==================');
         console.log('error', err);
         console.log('==================');
