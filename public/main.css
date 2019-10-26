@@ -249,7 +249,7 @@ a {
 }
 
 /* Little bit of responsiveness */
-@media (max-width: 900px) {
+@media (min-width: 520px), screen and (min-device-width: 520px) {
   .layout {
     display: grid;
     grid-template-rows: repeat(4, min-content);
