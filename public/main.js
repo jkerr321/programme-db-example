@@ -1,6 +1,6 @@
-const modal = document.querySelector('.modal');
-const table = document.querySelector('table');
-const triggers = document.querySelectorAll('.grid-plant');
+const modal = document.querySelector('.js-modal');
+const table = document.querySelector('.js-table');
+const triggers = document.querySelectorAll('.js-grid-plant');
 const toggle = document.querySelector('.js-button-toggle-view');
 
 const toggleView = () => {
@@ -22,13 +22,13 @@ const populatePlantData = (event) => {
     const link = event.srcElement.attributes['data-link'].value;
     const colour = event.srcElement.attributes['data-colour'].value;
 
-    const modalCommonName = document.querySelector('.modal-common-name');
-    const modalLatinName = document.querySelector('.modal-latin-name');
-    const modalPerennialAnnual = document.querySelector('.modal-perennial-annual');
-    const modalImage = document.querySelector('.modal-image');
-    const modalPlantedDate = document.querySelector('.modal-planted-date');
-    const modalLink = document.querySelector('.modal-link');
-    const modalContent = document.querySelector('.modal-content');
+    const modalCommonName = document.querySelector('.js-modal-common-name');
+    const modalLatinName = document.querySelector('.js-modal-latin-name');
+    const modalPerennialAnnual = document.querySelector('.js-modal-perennial-annual');
+    const modalImage = document.querySelector('.js-modal-image');
+    const modalPlantedDate = document.querySelector('.js-modal-planted-date');
+    const modalLink = document.querySelector('.js-modal-link');
+    const modalContent = document.querySelector('.js-modal-content');
 
     modalCommonName.innerHTML = commonName || '';
     modalLatinName.innerHTML = latinName || '';

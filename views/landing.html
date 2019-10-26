@@ -53,7 +53,7 @@
         <div class="borders-grid">
             {{#each gridItems}}
             {{#unless this.isDecking}}
-            <div class="grid-plant {{this.perennialAnnual}}" style="grid-area:{{this.position}};background-color:{{this.colour}}"
+            <div class="grid-plant js-grid-plant {{this.perennialAnnual}}" style="grid-area:{{this.position}};background-color:{{this.colour}}"
             data-position="{{this.position}}" 
             data-common-name="{{this.commonName}}" 
             data-latin-name="{{this.latinName}}" 
@@ -72,7 +72,7 @@
         <div class="decking-grid">
             {{#each gridItems}}
             {{#if this.isDecking}}
-            <div class="grid-plant {{this.perennialAnnual}}" style="grid-area:{{this.position}};background-color:{{this.colour}}"
+            <div class="grid-plant js-grid-plant {{this.perennialAnnual}}" style="grid-area:{{this.position}};background-color:{{this.colour}}"
             data-position="{{this.position}}" 
             data-common-name="{{this.commonName}}" 
             data-latin-name="{{this.latinName}}" 
@@ -87,17 +87,17 @@
         </div>
     </div>
     <div class="info">
-        <div class="modal">
-            <div class="modal-content">
-                <div class="modal-latin-name"></div>
-                <div class="modal-common-name">Click on a spot to find out more :)</div>
-                <div class="modal-perennial-annual"></div>
-                <div class="modal-image"></div>
-                <div class="modal-planted-date"></div>
-                <div class="modal-link"></div>
+        <div class="modal js-modal">
+            <div class="modal-content js-modal-content">
+                <div class="modal-latin-name js-modal-latin-name"></div>
+                <div class="modal-common-name js-modal-common-name">Click on a spot to find out more :)</div>
+                <div class="modal-perennial-annual js-modal-perennial-annual"></div>
+                <div class="js-modal-planted-date"></div>
+                <div class="modal-image js-modal-image"></div>
+                <div class="modal-link js-modal-link"></div>
             </div>
         </div>
-        <table class="hidden">
+        <table class="js-table hidden">
             <thead>
                 <tr>
                     <th>Grid</th>
