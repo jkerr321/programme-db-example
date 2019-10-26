@@ -11,3 +11,4 @@ Critical
 - make modal work on hover
 - add different bits as partials for different views
 - add JS to client side selector classes
+- get off hobby Dyno
