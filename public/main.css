@@ -238,6 +238,10 @@ button:hover {
   margin: 8px 12px 0;
 }
 
+.header-right a {
+  margin-left: 8px;
+}
+
 .header-left {
   grid-area: header-left;
   text-align: left;
@@ -267,5 +271,105 @@ a {
 
   table {
     margin: 57px auto;
+  }
+}
+
+/* GALLERY */
+.photo-modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.photo-modal__show {
+  display: block;
+}
+
+.photo-modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 800px;
+}
+
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.expandable-image:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.photo {
+  display: block;
+  max-width: 100%;
+  max-height: 480px;
+  background-color: ghostwhite;
+}
+
+.double__p1 {
+  margin-right: 2px;
+}
+
+.double__p2 {
+  margin-left: 2px;
+}
+
+.solo,
+.double {
+  display: flex;
+  margin: 2px auto;
+  max-width: 650px;
+}
+
+.season-container {
+  margin: auto;
+  width: 50%;
+  border: 1.5px dotted #131313;
+}
+
+.season-content {
+  padding: 6%;
+}
+
+.season-title {
+  width: 50%;
+  margin: 12px auto 4px;
+  font-family: 'Bangers';
+  font-size: 40px;
+  text-align: left;
+  color: #131313;
+}
+
+@media (max-width: 520px), screen and (max-device-width: 520px) {
+  .photo-modal-content{
+    width: 100%;
+  }
+
+  .season-title, .season-container {
+    width: 98%;
   }
 }
