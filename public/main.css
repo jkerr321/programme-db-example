@@ -2,6 +2,20 @@ body {
   font-family: 'PT Mono', monospace;
 }
 
+a {
+  color: #131313;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.border {
+   border: 1.5px dotted #131313;
+}
+
+/* Grids */
+
 .layout {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -12,11 +26,57 @@ body {
     "footer footer";
 }
 
+/* Header */
+.header {
+  grid-area: header;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, min-content);
+  grid-template-areas:
+  "header-left header-right"
+  "header-centre header-centre"
+}
+
+.header-centre {
+  grid-area: header-centre;
+}
+
+.header-right {
+  grid-area: header-right;
+  text-align: right;
+  margin: 8px 12px 0;
+}
+
+.header-right a {
+  margin-left: 8px;
+}
+
+.header-left {
+  grid-area: header-left;
+  text-align: left;
+  margin: 8px 0 0 12px;
+}
+
+.header button {
+  height: 45px;
+  width: 168px;
+  color: #131313;
+  font-family: 'Bangers';
+  font-size: 24px;
+  margin: 20px auto 52px;
+}
+
+.header button:hover {
+  color: white;
+  background-color: #131313;
+}
+
+/* Garden */
 .garden {
-  margin-top: 20px;
   grid-area: garden;
   justify-self: center;
-  display: inline-grid;
+  display: grid;
   grid-template-columns: auto;
   grid-template-rows: repeat(3, min-content);
   grid-template-areas: 
@@ -26,9 +86,8 @@ body {
 }
 
 .borders-grid {
-  border: 1.5px dotted #333333;
   grid-area: borders-grid;
-  display: inline-grid;
+  display: grid;
   grid-template-columns: repeat(16, 35px);
   grid-template-rows: repeat(16, 35px);
   grid-template-areas:
@@ -51,10 +110,9 @@ body {
 }
 
 .decking-grid {
-  border: 1.5px dotted #333333;
   margin-top: 8px;
   grid-area: decking-grid;
-  display: inline-grid;
+  display: grid;
   grid-template-columns: repeat(16, 35px);
   grid-template-rows: repeat(3, 35px);
   grid-template-areas: 
@@ -63,21 +121,10 @@ body {
     "A19 B19 C19 D19 E19 F19 G19 H19 J19 K19 L19 M19 N19 P19 Q19 R19";
 }
 
-.header {
-  grid-area: header;
-  text-align: center;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(2, min-content);
-  grid-template-areas:
-  "header-left header-right"
-  "header-centre header-centre"
-}
-
 .col-name {
   background-color: ghostwhite;
   grid-area: col-name;
-  display: inline-grid;
+  display: grid;
   grid-template-columns: repeat(16, 35px);
   grid-template-rows: 35px;
 }
@@ -85,7 +132,7 @@ body {
 .row-name-borders {
   background-color: ghostwhite;
   grid-area: row-name-borders;
-  display: inline-grid;
+  display: grid;
   grid-template-rows: repeat(16, 35px);
   grid-template-columns: 35px;
 }
@@ -94,27 +141,21 @@ body {
   background-color: ghostwhite;
   margin-top: 8px;
   grid-area: row-name-decking;
-  display: inline-grid;
+  display: grid;
   grid-template-rows: repeat(3, 35px);
   grid-template-columns: 35px;
 }
 
-.grass {
-  position: relative;
-  border: 1.5px dotted #333333;
-  border-bottom: none;
-  background-color: white;
-  grid-area: grass;
+.name-item {
+  text-align: center;
+  padding: 10px;
 }
 
-.snips {
-  top: 5%;
-  left: 42%;
-  border: 1px solid red;
-  height: 60px;
-  width: 60px;
-  position: absolute;
-  opacity: 0;
+/* elements */
+.grass {
+  position: relative;
+  border-bottom: none;
+  grid-area: grass;
 }
 
 .grass img {
@@ -135,18 +176,23 @@ body {
 }
 
 .A {
-  border: 2px dotted black;
+  border: 2px dotted #131313;
 }
 
 .P {
-  border: 1px solid black;
+  border: 1px solid #131313;
 }
 
-.name-item {
-  text-align: center;
-  padding: 10px;
+.snips {
+  top: 5%;
+  left: 42%;
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  opacity: 0;
 }
 
+/* Footer */
 .footer {
   grid-area: footer;
   text-align: center;
@@ -160,8 +206,9 @@ body {
   margin: 0 10px;
 }
 
+/* Data table */
 table {
-  margin: 20px 40px 20px 0;
+  margin: 0 40px 20px 0;
   font-size: 14px;
   grid-area: info;
   border-collapse: collapse;
@@ -181,12 +228,12 @@ td {
   border: 0.5px dotted #131313;
 }
 
+/* Info modal */
 .modal {
   grid-area: info;
   justify-self: center;
   width: 60%;
-  margin: 57px 30px;
-  border: 1.5px dotted #131313;
+  margin: 36px 30px;
 }
 
 .modal-content {
@@ -221,46 +268,6 @@ td {
 
 .hidden {
   display: none;
-}
-
-button {
-  height: 45px;
-  width: 168px;
-  color: #131313;
-  font-family: 'Bangers';
-  border: 1.5px dotted #131313;
-  font-size: 24px;
-  margin: 20px auto 24px;
-}
-
-button:hover {
-  cursor: pointer;
-  color: white;
-  background-color: #131313;
-}
-
-.header-centre {
-  grid-area: header-centre;
-}
-
-.header-right {
-  grid-area: header-right;
-  text-align: right;
-  margin: 8px 12px 0;
-}
-
-.header-right a {
-  margin-left: 8px;
-}
-
-.header-left {
-  grid-area: header-left;
-  text-align: left;
-  margin: 8px 0 0 12px;
-}
-
-a {
-  color: #131313;
 }
 
 /* Little bit of responsiveness */
@@ -311,7 +318,6 @@ a {
   max-width: 800px;
 }
 
-
 .close {
   position: absolute;
   top: 15px;
@@ -359,7 +365,6 @@ a {
 .season-container {
   margin: auto;
   width: 50%;
-  border: 1.5px dotted #131313;
 }
 
 .season-content {
