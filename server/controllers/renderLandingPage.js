@@ -4,26 +4,34 @@ const dotenv = require('dotenv');
 dotenv.config();
 const config = require('../../config');
 
-module.exports = async (req, res) => {
+module.exports = async (req, res, seasonName) => {
     try {
-        const gridItems = await accessSpreadsheet();
-        return res.render('landing', { gridItems });
+        const seasonPath = req.path.substr(1);
+        const gridItems = await accessSpreadsheet(seasonPath);
+        return res.render('landing', { gridItems, seasonName, seasonPath });
     } catch (err) {
         console.log('==================');
         console.log('render error', err);
         console.log('==================');        
-        return res.render('error'); //TODO
+        // return res.render('error'); //TODO
     };
 };
 
-async function accessSpreadsheet() {
+async function accessSpreadsheet(season) {
     try {
         const doc = new GoogleSpreadsheet('1Khj2u55fpyr7pjKxJKu8HQzmj6UD5x2fTAxpsme0wcM');
         await promisify(doc.useServiceAccountAuth)(config);
         const info = await promisify(doc.getInfo)();
-        const sheet = info.worksheets[0];
+        let seasonSheet = {};
+        info.worksheets.forEach(sheet => { //this could be much nicer!
+            if (sheet.title.toLowerCase() === season.toLowerCase()) {
+                seasonSheet = sheet;
+            }
+            return sheet;
+        })
+        // const sheet = info.worksheets[0];
         // info.worksheets[0].title); //==sheet name
-        const rows = await promisify(sheet.getRows)({
+        const rows = await promisify(seasonSheet.getRows)({
             "offset": 1,
             "limit": 300
         });
