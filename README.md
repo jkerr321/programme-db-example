@@ -5,11 +5,15 @@ Critical
 - add shears icon
 - add older gallery
 
-- readme
-- tidy up data - capitals etc
-- front end transition
+Tidy up
+- TODOs
+- gallery - code back button properly
 - gallery - go to specific bit of gallery based on which year
-- tidy up - BIG
+- more atomic CSS
+- front end JS
+- back end JS!
+
+- readme
 - make modal work on hover
 - add different bits as partials for different views
 - get off hobby Dyno

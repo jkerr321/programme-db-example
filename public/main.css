@@ -100,10 +100,21 @@ body {
 }
 
 .grass {
+  position: relative;
   border: 1.5px dotted #333333;
   border-bottom: none;
   background-color: white;
   grid-area: grass;
+}
+
+.snips {
+  top: 5%;
+  left: 42%;
+  border: 1px solid red;
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  opacity: 0;
 }
 
 .grass img {
