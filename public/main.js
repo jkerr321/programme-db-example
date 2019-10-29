@@ -1,9 +1,11 @@
+// Homepage functionality
 if (document.querySelector('.js-modal')) {
     const modal = document.querySelector('.js-modal');
     const table = document.querySelector('.js-table');
-    const triggers = document.querySelectorAll('.js-grid-plant');
-    const toggle = document.querySelector('.js-button-toggle-view');
+    const plants = document.querySelectorAll('.js-grid-plant');
+    const toggleButton = document.querySelector('.js-button-toggle-view');
 
+    //TODO surely this and showPlant Modal can be DRYed out
     const toggleView = () => {
         if (table.classList.contains('hidden')) {
             table.classList.remove('hidden');
@@ -14,7 +16,18 @@ if (document.querySelector('.js-modal')) {
         }
     }
 
+    // NB Alas this isn't merged with functionality in toggleView because the modal is shown on load
+    const showPlantModal = (event, plant) => {
+        // hide table if it's in view
+        if (!table.classList.contains('hidden')) {
+            table.classList.add('hidden');
+        }
+        populatePlantData(event);
+        modal.classList.remove('hidden');
+    }
+
     const populatePlantData = (event) => {
+        // get plant info from data attrs
         const commonName = event.srcElement.attributes['data-common-name'].value;
         const latinName = event.srcElement.attributes['data-latin-name'].value;
         const perennialAnnual = event.srcElement.attributes['data-perennial-annual'].value;
@@ -23,6 +36,7 @@ if (document.querySelector('.js-modal')) {
         const link = event.srcElement.attributes['data-link'].value;
         const colour = event.srcElement.attributes['data-colour'].value;
 
+        // get modal divs that we want to insert data into
         const modalCommonName = document.querySelector('.js-modal-common-name');
         const modalLatinName = document.querySelector('.js-modal-latin-name');
         const modalPerennialAnnual = document.querySelector('.js-modal-perennial-annual');
@@ -31,6 +45,7 @@ if (document.querySelector('.js-modal')) {
         const modalLink = document.querySelector('.js-modal-link');
         const modalContent = document.querySelector('.js-modal-content');
 
+        // update modal with plant info
         modalCommonName.innerHTML = commonName || '';
         modalLatinName.innerHTML = latinName || '';
         modalContent.setAttribute('style', `border: 20px solid ${colour}`)
@@ -62,16 +77,7 @@ if (document.querySelector('.js-modal')) {
         }
     };
 
-    function showModal(event, plant) {
-        //hide table if it's in view
-        if (!table.classList.contains('hidden')) {
-            table.classList.add('hidden');
-        }
-        populatePlantData(event);
-        modal.classList.remove('hidden');
-    }
-
-    function highlightGridPlant(plant) {
+    const highlightGridPlant = (plant) => {
         const alreadySelected = document.querySelector('.selected');
         if (alreadySelected) {
             alreadySelected.classList.remove('selected');
@@ -79,31 +85,25 @@ if (document.querySelector('.js-modal')) {
         plant.classList.add('selected');
     }
 
-    triggers.forEach(plant => plant.addEventListener("click", event => showModal(event, plant)));
-    triggers.forEach(plant => plant.addEventListener("click", () => highlightGridPlant(plant)));
-    toggle.addEventListener('click', toggleView);
+    plants.forEach(plant => plant.addEventListener("click", e => showPlantModal(e, plant)));
+    plants.forEach(plant => plant.addEventListener("click", () => highlightGridPlant(plant)));
+    toggleButton.addEventListener('click', toggleView);
 }
 
+// Photo modal functionality for gallery page
 if (document.querySelector('.js-photo-modal')) {
     const modal = document.querySelector('.js-photo-modal');
     const modalContent = document.querySelector('.js-photo-modal-content');
-    const timeline = document.querySelector('.js-gallery-container');
-    const imgs = Array.from(timeline.querySelectorAll('.photo'));
+    const photos = Array.from(document.querySelector('.js-gallery-container').querySelectorAll('.photo'));
     const close = modal.querySelector('.js-close');
 
-    imgs.forEach(img => img.addEventListener('click', (e) => {
-        modal.classList.add('photo-modal__show'); //TODO merge this with modal show above
+    photos.forEach(photo => photo.addEventListener('click', (e) => {
+        modal.classList.remove('hidden');
         modalContent.src = e.srcElement.src;
     }));
 
     // close modal when anywhere on screen is clicked apart from the image itself
-    close.addEventListener('click', () => {
-        modal.classList.remove('photo-modal__show');
-    });
-    modal.addEventListener('click', function () {
-        modal.classList.remove('photo-modal__show');
-    });
-    modalContent.addEventListener('click', function (e) {
-        e.stopPropagation();
-    });
+    close.addEventListener('click', () => modal.classList.add('hidden'));
+    modal.addEventListener('click', () => modal.classList.add('hidden'));
+    modalContent.addEventListener('click', (e) => e.stopPropagation());
 }

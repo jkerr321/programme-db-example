@@ -266,10 +266,6 @@ td {
   margin: 20px auto 24px;
 }
 
-.hidden {
-  display: none;
-}
-
 /* Little bit of responsiveness */
 @media (max-width: 520px), screen and (max-device-width: 520px) {
   .layout {
@@ -294,7 +290,7 @@ td {
 
 /* GALLERY */
 .photo-modal {
-  display: none;
+  display: block;
   position: fixed;
   z-index: 100;
   padding-top: 100px;
@@ -305,10 +301,6 @@ td {
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.9);
-}
-
-.photo-modal__show {
-  display: block;
 }
 
 .photo-modal-content {
@@ -388,4 +380,8 @@ td {
   .season-title, .season-container {
     width: 98%;
   }
+}
+
+.hidden {
+  display: none;
 }
