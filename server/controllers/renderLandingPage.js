@@ -13,7 +13,6 @@ module.exports = async (req, res, seasonName) => {
         console.log('==================');
         console.log('render error', err);
         console.log('==================');        
-        // return res.render('error'); //TODO
     };
 };
 
