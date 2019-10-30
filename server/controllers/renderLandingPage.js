@@ -1,12 +1,12 @@
-const GoogleSpreadsheet = require('google-spreadsheet');
-const { promisify } = require('util');
 const dotenv = require('dotenv');
 dotenv.config();
+const GoogleSpreadsheet = require('google-spreadsheet');
+const { promisify } = require('util');
 const config = require('../../config');
 
 module.exports = async (req, res, seasonName) => {
     try {
-        const seasonPath = req.path.substr(1);
+        const seasonPath = req.path.substr(1); // e.g. 'summer19'
         const gridItems = await accessSpreadsheet(seasonPath);
         return res.render('landing', { gridItems, seasonName, seasonPath });
     } catch (err) {
@@ -21,19 +21,19 @@ async function accessSpreadsheet(season) {
         const doc = new GoogleSpreadsheet('1Khj2u55fpyr7pjKxJKu8HQzmj6UD5x2fTAxpsme0wcM');
         await promisify(doc.useServiceAccountAuth)(config);
         const info = await promisify(doc.getInfo)();
-        let seasonSheet = {};
-        info.worksheets.forEach(sheet => { //this could be much nicer!
-            if (sheet.title.toLowerCase() === season.toLowerCase()) {
-                seasonSheet = sheet;
+
+        const sheet = info.worksheets.reduce((acc, worksheet, i) => {
+            if (worksheet.title.toLowerCase() === season.toLowerCase()) {
+                acc = worksheet;
             }
-            return sheet;
-        })
-        // const sheet = info.worksheets[0];
-        // info.worksheets[0].title); //==sheet name
-        const rows = await promisify(seasonSheet.getRows)({
+            return acc;
+        }, {});
+
+        const rows = await promisify(sheet.getRows)({
             "offset": 1,
             "limit": 300
         });
+
         const values = rows.reduce((acc, row) => {
             if (row.position) {
                 acc.push({
@@ -51,11 +51,12 @@ async function accessSpreadsheet(season) {
                 });
             }
             return acc;
-        }, [])
+        }, []);
+
         return values;
     } catch (err) {
         console.log('==================');
-        console.log('error', err);
+        console.log('accessSpreadhsheet error', err);
         console.log('==================');
     }
 }
