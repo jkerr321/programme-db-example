@@ -53,37 +53,6 @@ const colours = require('../colours');
 //     }
 // }
 
-// const getPlantData = rows => {
-//     try {
-//         const values = rows.reduce((acc, row) => {
-//             if (row.position) {
-//                 acc.push({
-//                     isDecking: `${row.position}`.includes('17') || `${row.position}`.includes('18') || `${row.position}`.includes('19'),
-//                     position: row.position,
-//                     commonName: row.commonname,
-//                     latinName: row.latinname,
-//                     perennialAnnual: `${row.perennialannual}`.substr(0, 1),
-//                     plantedDate: row.planteddate,
-//                     floweringPeriod: row.floweringperiod,
-//                     colour: row.colour,
-//                     image: row.image,
-//                     link: row.link,
-//                     isFilled: !!row.filled,
-//                     notes: row.notes
-//                 });
-//             }
-//             return acc;
-//         }, []);
-//         values.forEach(value => {
-//             if (value.position === 'R5') {
-//             }
-//         })
-//         return values;
-//     } catch (err) {
-//         console.log('getPlantData error', err);
-//     }
-// }
-
 // module.exports = async (req, res, seasonName) => {
 //     try {
 //         const seasonPath = req.path.substr(1); // e.g. 'summer19'
@@ -101,6 +70,66 @@ const colours = require('../colours');
 //         console.log('render error', err);
 //     };
 // };
+
+const getData = (rows) => {
+    try {
+
+        //remove duplicate values for seasons
+        const seasons = rows.reduce((acc, row) => {
+            if (row.season) {
+                acc.includes(row.season) ? '' : acc.push(row.season);
+            }
+            return acc;
+        }, []);
+
+        // create empty array / objects for each season:
+        // [{
+        //     season: 1998/99,
+        //     matches: []
+        // },
+        // {
+        //     season: 1999/00,
+        //     matches: []
+        // }]
+        const seasonsArray = seasons.reduce((acc, season) => {
+            const obj = {}
+            obj.season = season;
+            obj.matches = [];
+            acc.push(obj);
+            return acc;
+        }, []);
+
+        const values = rows.reduce((seasonsArray, row) => {
+            seasonsArray.forEach(obj => {
+                if (row.season === obj.season) {
+                    obj.matches.push({
+                        season: row.season,
+                        league: row.league,
+                        tier: row.leaguetier,
+                        date: row.date,
+                        opponent: row.opponent,
+                        home_away: row.homeaway,
+                        score: row.score,
+                        result: row.result,
+                        position: row.position,
+                        points: row.points,
+                        competition: row.competition,
+                        match_notes: row.matchnotes,
+                        got_want: row.gotwant,
+                        price: row.programmeprice,
+                        notes: row.programmenotes
+                    })
+                }
+            });
+            return seasonsArray;
+        }, seasonsArray);
+
+        return values;
+    } catch (err) {
+        console.log('getData error', err);
+    }
+}
+
 
 module.exports = async (req, res, seasonName) => {
     try {
@@ -121,7 +150,15 @@ module.exports = async (req, res, seasonName) => {
             "limit": 5000
         });
 
-        return res.render('landing', { rows });
+        const data = await getData(rows);
+        // console.log('==================');
+        // console.log('data[0], data[1]', data[0], data[1]);
+        // console.log('==================');
+
+        const data1 = JSON.stringify(data)
+        
+        
+        return res.render('landing', { data });
     } catch (err) {
         console.log('render error', err);
     };

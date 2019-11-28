@@ -1,158 +1,33 @@
-body {
-  font-family: 'PT Mono', monospace;
-}
-
-a {
-  color: #131313;
-}
-
-button:hover {
-  cursor: pointer;
-}
-
-.border {
-   border: 1.5px dotted #131313;
-}
-
-/* Grids */
-
+/* Grids
 .layout {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, min-content);
   grid-template-areas: 
     "header header"
-    "garden info"
+    "matches info"
     "footer footer";
-}
+} */
 
-/* Header */
-.header {
-  grid-area: header;
-  text-align: center;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(2, min-content);
-  grid-template-areas:
-  "header-left header-right"
-  "header-centre header-centre"
-}
-
-.header-centre {
-  grid-area: header-centre;
-}
-
-.header-right {
-  grid-area: header-right;
-  text-align: right;
-  margin: 8px 12px 0;
-}
-
-.header-right a {
-  margin-left: 8px;
-}
-
-.header-left {
-  grid-area: header-left;
-  text-align: left;
-  margin: 8px 0 0 12px;
-}
-
-.button {
-  color: #131313;
-  font-size: 24px;
-  font-family: 'Bangers';
-}
-
-.button--big {
-  height: 45px;
-  width: 168px;
-  margin: 20px auto 52px;
-}
-
-.button--small {
-  /* font-family: 'PT Mono', monospace; */
-  height: 32px;
-  margin: 4px auto;
-}
-
-.button:hover {
-  color: white;
-  background-color: #131313;
-}
-
-/* Garden */
-.garden {
-  grid-area: garden;
-  justify-self: center;
+.matches {
+  /* grid-area: matches; */
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: repeat(3, min-content);
+  grid-template-rows: min-content auto;
   grid-template-areas: 
-    ". col-name"
-    "row-name-borders borders-grid"
-    "row-name-decking decking-grid";
+    "season-date"
+    "games"
 }
 
-.borders-grid {
-  grid-area: borders-grid;
-  display: grid;
-  grid-template-columns: repeat(16, 35px);
-  grid-template-rows: repeat(16, 35px);
-  grid-template-areas:
-    "A1 B1 C1 D1 E1 F1 G1 H1 J1 K1 L1 M1 N1 P1 Q1 R1"
-    "A2 B2 C2 D2 E2 F2 G2 H2 J2 K2 L2 M2 N2 P2 Q2 R2"
-    "A3 B3 C3 D3 E3 F3 G3 H3 J3 K3 L3 M3 N3 P3 Q3 R3"
-    "A4 B4 C4 grass grass grass grass grass grass grass grass grass grass P4 Q4 R4"
-    "A5 B5 C5 grass grass grass grass grass grass grass grass grass grass P5 Q5 R5"
-    "A6 B6 C6 grass grass grass grass grass grass grass grass grass grass P6 Q6 R6"
-    "A7 B7 C7 grass grass grass grass grass grass grass grass grass grass P7 Q7 R7"
-    "A8 B8 C8 grass grass grass grass grass grass grass grass grass grass P8 Q8 R8"
-    "A9 B9 C9 grass grass grass grass grass grass grass grass grass grass P9 Q9 R9"
-    "A10 B10 C10 grass grass grass grass grass grass grass grass grass grass P10 Q10 R10"
-    "A11 B11 C11 grass grass grass grass grass grass grass grass grass grass P11 Q11 R11"
-    "A12 B12 C12 grass grass grass grass grass grass grass grass grass grass P12 Q12 R12"
-    "A13 B13 C13 grass grass grass grass grass grass grass grass grass grass P13 Q13 R13"
-    "A14 B14 C14 grass grass grass grass grass grass grass grass grass grass P14 Q14 R14"
-    "A15 B15 C15 grass grass grass grass grass grass grass grass grass grass P15 Q15 R15"
-    "A16 B16 C16 grass grass grass grass grass grass grass grass grass grass P16 Q16 R16";
+.season-date {
+  grid-area: season-date;
 }
 
-.decking-grid {
-  margin-top: 8px;
-  grid-area: decking-grid;
+.games {
+  grid-area: games;
   display: grid;
-  grid-template-columns: repeat(16, 35px);
-  grid-template-rows: repeat(3, 35px);
-  grid-template-areas: 
-    "A17 B17 C17 D17 E17 F17 G17 H17 J17 K17 L17 M17 N17 P17 Q17 R17"
-    "A18 B18 C18 D18 E18 F18 G18 H18 J18 K18 L18 M18 N18 P18 Q18 R18"
-    "A19 B19 C19 D19 E19 F19 G19 H19 J19 K19 L19 M19 N19 P19 Q19 R19";
-}
-
-.col-name {
-  background-color: ghostwhite;
-  grid-area: col-name;
-  display: grid;
-  grid-template-columns: repeat(16, 35px);
-  grid-template-rows: 35px;
-}
-
-.row-name-borders {
-  background-color: ghostwhite;
-  grid-area: row-name-borders;
-  display: grid;
-  grid-template-rows: repeat(16, 35px);
-  grid-template-columns: 35px;
-}
-
-.row-name-decking {
-  background-color: ghostwhite;
-  margin-top: 8px;
-  grid-area: row-name-decking;
-  display: grid;
-  grid-template-rows: repeat(3, 35px);
-  grid-template-columns: 35px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
 }
 
 .name-item {
