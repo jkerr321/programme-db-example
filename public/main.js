@@ -3,8 +3,7 @@ if (document.querySelector('.js-modal')) {
     const modal = document.querySelector('.js-modal');
     const modalContentInfo = document.querySelector('.js-modal-content-info');
     const modalContentForm = document.querySelector('.js-modal-content-form');
-    const matchesContainer = document.querySelector('.matches-container')
-    const matches = matches.querySelectorAll('.js-grid-match');
+    const matches = document.querySelectorAll('.js-grid-match');
     const editButton = document.querySelector('.js-modal-edit-button');
 
     const hideInitialModal = () => {
@@ -169,6 +168,5 @@ if (document.querySelector('.js-modal')) {
 
     matches.forEach(match => match.addEventListener('click', e => showInfoModal(e)));
     editButton.addEventListener('click', e => showForm(e));
-    toggleButton.addEventListener('click', toggleView);
     formColour.addEventListener('change', changeFormColour);
 }
