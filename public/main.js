@@ -17,17 +17,15 @@ if (document.querySelector('.js-modal')) {
         return {
             season: event.srcElement.attributes['data-season'].value,
             league: event.srcElement.attributes['data-league'].value,
-            tier: event.srcElement.attributes['data-tier'].value,
             date: event.srcElement.attributes['data-date'].value,
             opponent: event.srcElement.attributes['data-opponent'].value,
-            home_away: event.srcElement.attributes['data-home-away'].value,
+            homeAway: event.srcElement.attributes['data-home-away'].value,
             score: event.srcElement.attributes['data-score'].value,
-            result: event.srcElement.attributes['data-result'].value,
             position: event.srcElement.attributes['data-position'].value,
             points: event.srcElement.attributes['data-points'].value,
             competition: event.srcElement.attributes['data-competition'].value,
-            match_notes: event.srcElement.attributes['data-match-notes'].value,
-            got_want: event.srcElement.attributes['data-got-want'].value,
+            matchNotes: event.srcElement.attributes['data-match-notes'].value,
+            gotWant: event.srcElement.attributes['data-got-want'].value,
             price: event.srcElement.attributes['data-price'].value,
             notes: event.srcElement.attributes['data-notes'].value
         }
@@ -35,107 +33,131 @@ if (document.querySelector('.js-modal')) {
 
     // NB Alas this isn't merged with functionality in toggleView because the modal is shown on load
     const showInfoModal = (event) => {
+        console.log('==================');
+        console.log('event.srcElement', event.srcElement);
+        console.log('==================');
+        
         hideInitialModal();
         const modalInfo = getModalData(event);
+        console.log('==================');
+        console.log('modalInfo', modalInfo);
+        console.log('==================');
+        
         populateModalData(modalInfo);
-        populateForm(modalInfo);
-        modalInfo.isFilled === 'true' ? showModalInfo() : showForm();
+        // populateForm(modalInfo);
+        showModalInfo();
         // hide table if it's in view
-        if (!table.classList.contains('hidden')) {
-            table.classList.add('hidden');
-        }
         modal.classList.remove('hidden');
     }
 
     const populateModalData = (modalInfo) => {
         // changeBorderColour(modalInfo.colour);
 
+        //TODO DRY?
         // get modal divs that we want to insert data into
-        const modalCommonName = document.querySelector('.js-modal-common-name');
-        const modalLatinName = document.querySelector('.js-modal-latin-name');
-        const modalPerennialAnnual = document.querySelector('.js-modal-perennial-annual');
-        const modalImage = document.querySelector('.js-modal-image');
-        const modalPlantedDate = document.querySelector('.js-modal-planted-date');
-        const modalLink = document.querySelector('.js-modal-link');
-        const modalNotes = document.querySelector('.js-modal-notes');
+        const modalSeason = document.querySelector('.js-modal-season')
+        const modalLeague = document.querySelector('.js-modal-league')
+        const modalDate = document.querySelector('.js-modal-date')
+        const modalOpponent = document.querySelector('.js-modal-opponent')
+        const modalHomeAway = document.querySelector('.js-modal-home_away')
+        const modalScore = document.querySelector('.js-modal-score')
+        const modalPosition = document.querySelector('.js-modal-position')
+        const modalPoints = document.querySelector('.js-modal-points')
+        const modalCompetition = document.querySelector('.js-modal-competition')
+        const modalMatchNotes = document.querySelector('.js-modal-match_notes')
+        const modalGotWant = document.querySelector('.js-modal-got_want')
+        const modalPrice = document.querySelector('.js-modal-price')
+        const modalNotes = document.querySelector('.js-modal-notes')
         
         // update modal with plant info
-        modalCommonName.innerHTML = modalInfo.commonName || '';
-        modalLatinName.innerHTML = modalInfo.latinName || '';
-        modalNotes.innerHTML = modalInfo.notes || '';
+        modalSeason.innerHTML = modalInfo.season || '';
+        modalLeague.innerHTML = modalInfo.league || '';
+        modalDate.innerHTML = modalInfo.date || '';
+        modalOpponent.innerHTML = modalInfo.opponent || '';
+        modalHomeAway.innerHTML = modalInfo.homeAway || '';
+        modalScore.innerHTML = modalInfo.score || '';
+        modalPosition.innerHTML = modalInfo.position || '';
+        modalPoints.innerHTML = modalInfo.points || '';
+        modalCompetition.innerHTML = modalInfo.competition || '';
+        modalGotWant.innerHTML = modalInfo.gotWant || '';
 
-        if (modalInfo.plantedDate) {
-            modalPlantedDate.innerHTML = `Planted ${modalInfo.plantedDate}`;
+        //TODO DRY create func for this
+        if (modalInfo.matchNotes) {
+            modalMatchNotes.innerHTML = `Match Notes: ${modalInfo.matchNotes}`;
         } else {
-            modalPlantedDate.innerHTML = '';
+            modalMatchNotes.innerHTML = '';
         }
 
-        if (modalInfo.perennialAnnual === 'P') {
-            modalPerennialAnnual.innerHTML = 'Perennial';
-        } else if (modalInfo.perennialAnnual === 'A') {
-            modalPerennialAnnual.innerHTML = 'Annual';
+        if (modalInfo.price) {
+            modalPrice.innerHTML = `Programme Price: ${modalInfo.price}`;
         } else {
-            modalPerennialAnnual.innerHTML = '';
+            modalPrice.innerHTML = '';
         }
 
-        if (modalInfo.image) {
-            modalImage.innerHTML = `<img src=${modalInfo.image}>`;
+        if (modalInfo.notes) {
+            modalNotes.innerHTML = `Programme Notes: ${modalInfo.notes}`;
         } else {
-            modalImage.innerHTML = '';
+            modalNotes.innerHTML = '';
         }
 
-        if (modalInfo.link) {
-            modalLink.innerHTML = `<a href=${modalInfo.link} target="_blank">RHS link</a>`;
+        if (modalInfo.points) {
+            modalPoints.innerHTML = `Points: ${modalInfo.points}`;
         } else {
-            modalLink.innerHTML = '';
+            modalPoints.innerHTML = '';
+        }
+
+        if (modalInfo.position) {
+            modalPosition.innerHTML = `League Position: ${modalInfo.position}`;
+        } else {
+            modalPosition.innerHTML = '';
         }
 
     };
 
-    const populateForm = (modalInfo) => {
-        // get form divs that we want to insert data into
-        const formTitle = document.querySelector('.js-form-title');
-        const formCommonName = document.querySelector('.js-form-common-name');
-        const formLatinName = document.querySelector('.js-form-latin-name');
-        const formAnnual = document.querySelector('.js-form-annual');
-        const formPerennial = document.querySelector('.js-form-perennial');
-        const formColour = document.querySelector('.js-form-colour');
-        const formColourOptions = formColour.querySelectorAll('option');
-        const formImage = document.querySelector('.js-form-image');
-        const formPlantedDate = document.querySelector('.js-form-planted-date');
-        const formLink = document.querySelector('.js-form-link');
-        const formNotes = document.querySelector('.js-form-notes');
-        const formPosition = document.querySelectorAll('.js-form-position');
+    // const populateForm = (modalInfo) => {
+    //     // get form divs that we want to insert data into
+    //     const formTitle = document.querySelector('.js-form-title');
+    //     const formCommonName = document.querySelector('.js-form-common-name');
+    //     const formLatinName = document.querySelector('.js-form-latin-name');
+    //     const formAnnual = document.querySelector('.js-form-annual');
+    //     const formPerennial = document.querySelector('.js-form-perennial');
+    //     const formColour = document.querySelector('.js-form-colour');
+    //     const formColourOptions = formColour.querySelectorAll('option');
+    //     const formImage = document.querySelector('.js-form-image');
+    //     const formPlantedDate = document.querySelector('.js-form-planted-date');
+    //     const formLink = document.querySelector('.js-form-link');
+    //     const formNotes = document.querySelector('.js-form-notes');
+    //     const formPosition = document.querySelectorAll('.js-form-position');
         
-        changeBorderColour(modalInfo.colour);
+    //     changeBorderColour(modalInfo.colour);
 
-        // set form placeholder values
-        formTitle.innerHTML = modalInfo.position || '';
-        formCommonName.placeholder = modalInfo.commonName || '';
-        formLatinName.placeholder = modalInfo.latinName || '';
-        formImage.placeholder = modalInfo.image || '';
-        formPlantedDate.placeholder = modalInfo.plantedDate || '';
-        formLink.placeholder = modalInfo.link || '';
-        formNotes.placeholder = modalInfo.notes || '';
-        formPosition.forEach(field => field.value = modalInfo.position || '');
+    //     // set form placeholder values
+    //     formTitle.innerHTML = modalInfo.position || '';
+    //     formCommonName.placeholder = modalInfo.commonName || '';
+    //     formLatinName.placeholder = modalInfo.latinName || '';
+    //     formImage.placeholder = modalInfo.image || '';
+    //     formPlantedDate.placeholder = modalInfo.plantedDate || '';
+    //     formLink.placeholder = modalInfo.link || '';
+    //     formNotes.placeholder = modalInfo.notes || '';
+    //     formPosition.forEach(field => field.value = modalInfo.position || '');
 
-        // remove current radio button selection
-        formPerennial.removeAttribute('checked');
-        formAnnual.removeAttribute('checked');
+    //     // remove current radio button selection
+    //     formPerennial.removeAttribute('checked');
+    //     formAnnual.removeAttribute('checked');
 
-        if (modalInfo.perennialAnnual === 'P') formPerennial.setAttribute('checked', '');
-        if (modalInfo.perennialAnnual === 'A') formAnnual.setAttribute('checked', '');
+    //     if (modalInfo.perennialAnnual === 'P') formPerennial.setAttribute('checked', '');
+    //     if (modalInfo.perennialAnnual === 'A') formAnnual.setAttribute('checked', '');
 
-        // remove currently selected default colour value and update to current plant colour
-        for (let i = 0; i < formColour.options.length; i++) {
-            formColour.options[i].removeAttribute('selected');
-        }
-        for (let i = 0; i < formColour.options.length; i++) {
-            if (formColour.options[i].value.toLowerCase() === modalInfo.colour.toLowerCase()) {
-                formColour.options[i].setAttribute('selected', '');
-            }
-        }
-    }
+    //     // remove currently selected default colour value and update to current plant colour
+    //     for (let i = 0; i < formColour.options.length; i++) {
+    //         formColour.options[i].removeAttribute('selected');
+    //     }
+    //     for (let i = 0; i < formColour.options.length; i++) {
+    //         if (formColour.options[i].value.toLowerCase() === modalInfo.colour.toLowerCase()) {
+    //             formColour.options[i].setAttribute('selected', '');
+    //         }
+    //     }
+    // }
 
     const showForm = () => {
         modalContentForm.classList.remove('hidden');
@@ -168,5 +190,5 @@ if (document.querySelector('.js-modal')) {
 
     matches.forEach(match => match.addEventListener('click', e => showInfoModal(e)));
     editButton.addEventListener('click', e => showForm(e));
-    formColour.addEventListener('change', changeFormColour);
+    // formColour.addEventListener('change', changeFormColour);
 }
