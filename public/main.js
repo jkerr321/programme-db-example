@@ -3,11 +3,8 @@ if (document.querySelector('.js-modal')) {
     const modal = document.querySelector('.js-modal');
     const modalContentInfo = document.querySelector('.js-modal-content-info');
     const modalContentForm = document.querySelector('.js-modal-content-form');
-    const table = document.querySelector('.js-table');
-    const garden = document.querySelector('.garden')
-    const plants = garden.querySelectorAll('.js-grid-plant');
-    const toggleButton = document.querySelector('.js-button-toggle-view');
-    const formColour = document.querySelector('.js-form-colour');
+    const matchesContainer = document.querySelector('.matches-container')
+    const matches = matches.querySelectorAll('.js-grid-match');
     const editButton = document.querySelector('.js-modal-edit-button');
 
     const hideInitialModal = () => {
@@ -17,40 +14,33 @@ if (document.querySelector('.js-modal')) {
         }
     }
 
-    //TODO surely this and showPlant Modal can be DRYed out
-    const toggleView = () => {
-        hideInitialModal();
-        if (table.classList.contains('hidden')) {
-            table.classList.remove('hidden');
-            modal.classList.add('hidden');
-        } else {
-            modal.classList.remove('hidden');
-            table.classList.add('hidden');
-        }
-    }
-
-    const getPlantData = (event) => {
+    const getModalData = (event) => {
         return {
-            commonName: event.srcElement.attributes['data-common-name'].value,
-            latinName: event.srcElement.attributes['data-latin-name'].value,
-            perennialAnnual: event.srcElement.attributes['data-perennial-annual'].value,
-            image: event.srcElement.attributes['data-image'].value,
-            plantedDate: event.srcElement.attributes['data-planted-date'].value,
-            link: event.srcElement.attributes['data-link'].value,
-            colour: event.srcElement.attributes['data-colour'].value,
-            notes: event.srcElement.attributes['data-notes'].value,
+            season: event.srcElement.attributes['data-season'].value,
+            league: event.srcElement.attributes['data-league'].value,
+            tier: event.srcElement.attributes['data-tier'].value,
+            date: event.srcElement.attributes['data-date'].value,
+            opponent: event.srcElement.attributes['data-opponent'].value,
+            home_away: event.srcElement.attributes['data-home-away'].value,
+            score: event.srcElement.attributes['data-score'].value,
+            result: event.srcElement.attributes['data-result'].value,
             position: event.srcElement.attributes['data-position'].value,
-            isFilled: event.srcElement.attributes['data-is-filled'].value
+            points: event.srcElement.attributes['data-points'].value,
+            competition: event.srcElement.attributes['data-competition'].value,
+            match_notes: event.srcElement.attributes['data-match-notes'].value,
+            got_want: event.srcElement.attributes['data-got-want'].value,
+            price: event.srcElement.attributes['data-price'].value,
+            notes: event.srcElement.attributes['data-notes'].value
         }
     }
 
     // NB Alas this isn't merged with functionality in toggleView because the modal is shown on load
-    const showPlantModal = (event) => {
+    const showInfoModal = (event) => {
         hideInitialModal();
-        const plantInfo = getPlantData(event);
-        populatePlantData(plantInfo);
-        populateForm(plantInfo);
-        plantInfo.isFilled === 'true' ? showPlantInfo() : showForm();
+        const modalInfo = getModalData(event);
+        populateModalData(modalInfo);
+        populateForm(modalInfo);
+        modalInfo.isFilled === 'true' ? showModalInfo() : showForm();
         // hide table if it's in view
         if (!table.classList.contains('hidden')) {
             table.classList.add('hidden');
@@ -58,8 +48,8 @@ if (document.querySelector('.js-modal')) {
         modal.classList.remove('hidden');
     }
 
-    const populatePlantData = (plantInfo) => {
-        changeBorderColour(plantInfo.colour);
+    const populateModalData = (modalInfo) => {
+        // changeBorderColour(modalInfo.colour);
 
         // get modal divs that we want to insert data into
         const modalCommonName = document.querySelector('.js-modal-common-name');
@@ -71,39 +61,39 @@ if (document.querySelector('.js-modal')) {
         const modalNotes = document.querySelector('.js-modal-notes');
         
         // update modal with plant info
-        modalCommonName.innerHTML = plantInfo.commonName || '';
-        modalLatinName.innerHTML = plantInfo.latinName || '';
-        modalNotes.innerHTML = plantInfo.notes || '';
+        modalCommonName.innerHTML = modalInfo.commonName || '';
+        modalLatinName.innerHTML = modalInfo.latinName || '';
+        modalNotes.innerHTML = modalInfo.notes || '';
 
-        if (plantInfo.plantedDate) {
-            modalPlantedDate.innerHTML = `Planted ${plantInfo.plantedDate}`;
+        if (modalInfo.plantedDate) {
+            modalPlantedDate.innerHTML = `Planted ${modalInfo.plantedDate}`;
         } else {
             modalPlantedDate.innerHTML = '';
         }
 
-        if (plantInfo.perennialAnnual === 'P') {
+        if (modalInfo.perennialAnnual === 'P') {
             modalPerennialAnnual.innerHTML = 'Perennial';
-        } else if (plantInfo.perennialAnnual === 'A') {
+        } else if (modalInfo.perennialAnnual === 'A') {
             modalPerennialAnnual.innerHTML = 'Annual';
         } else {
             modalPerennialAnnual.innerHTML = '';
         }
 
-        if (plantInfo.image) {
-            modalImage.innerHTML = `<img src=${plantInfo.image}>`;
+        if (modalInfo.image) {
+            modalImage.innerHTML = `<img src=${modalInfo.image}>`;
         } else {
             modalImage.innerHTML = '';
         }
 
-        if (plantInfo.link) {
-            modalLink.innerHTML = `<a href=${plantInfo.link} target="_blank">RHS link</a>`;
+        if (modalInfo.link) {
+            modalLink.innerHTML = `<a href=${modalInfo.link} target="_blank">RHS link</a>`;
         } else {
             modalLink.innerHTML = '';
         }
 
     };
 
-    const populateForm = (plantInfo) => {
+    const populateForm = (modalInfo) => {
         // get form divs that we want to insert data into
         const formTitle = document.querySelector('.js-form-title');
         const formCommonName = document.querySelector('.js-form-common-name');
@@ -118,31 +108,31 @@ if (document.querySelector('.js-modal')) {
         const formNotes = document.querySelector('.js-form-notes');
         const formPosition = document.querySelectorAll('.js-form-position');
         
-        changeBorderColour(plantInfo.colour);
+        changeBorderColour(modalInfo.colour);
 
         // set form placeholder values
-        formTitle.innerHTML = plantInfo.position || '';
-        formCommonName.placeholder = plantInfo.commonName || '';
-        formLatinName.placeholder = plantInfo.latinName || '';
-        formImage.placeholder = plantInfo.image || '';
-        formPlantedDate.placeholder = plantInfo.plantedDate || '';
-        formLink.placeholder = plantInfo.link || '';
-        formNotes.placeholder = plantInfo.notes || '';
-        formPosition.forEach(field => field.value = plantInfo.position || '');
+        formTitle.innerHTML = modalInfo.position || '';
+        formCommonName.placeholder = modalInfo.commonName || '';
+        formLatinName.placeholder = modalInfo.latinName || '';
+        formImage.placeholder = modalInfo.image || '';
+        formPlantedDate.placeholder = modalInfo.plantedDate || '';
+        formLink.placeholder = modalInfo.link || '';
+        formNotes.placeholder = modalInfo.notes || '';
+        formPosition.forEach(field => field.value = modalInfo.position || '');
 
         // remove current radio button selection
         formPerennial.removeAttribute('checked');
         formAnnual.removeAttribute('checked');
 
-        if (plantInfo.perennialAnnual === 'P') formPerennial.setAttribute('checked', '');
-        if (plantInfo.perennialAnnual === 'A') formAnnual.setAttribute('checked', '');
+        if (modalInfo.perennialAnnual === 'P') formPerennial.setAttribute('checked', '');
+        if (modalInfo.perennialAnnual === 'A') formAnnual.setAttribute('checked', '');
 
         // remove currently selected default colour value and update to current plant colour
         for (let i = 0; i < formColour.options.length; i++) {
             formColour.options[i].removeAttribute('selected');
         }
         for (let i = 0; i < formColour.options.length; i++) {
-            if (formColour.options[i].value.toLowerCase() === plantInfo.colour.toLowerCase()) {
+            if (formColour.options[i].value.toLowerCase() === modalInfo.colour.toLowerCase()) {
                 formColour.options[i].setAttribute('selected', '');
             }
         }
@@ -153,7 +143,7 @@ if (document.querySelector('.js-modal')) {
         modalContentInfo.classList.add('hidden');
     }
 
-    const showPlantInfo = () => {
+    const showModalInfo = () => {
         modalContentInfo.classList.remove('hidden');
         modalContentForm.classList.add('hidden');
     }
@@ -177,26 +167,8 @@ if (document.querySelector('.js-modal')) {
         }
     }
 
-    plants.forEach(plant => plant.addEventListener('click', e => showPlantModal(e)));
+    matches.forEach(match => match.addEventListener('click', e => showInfoModal(e)));
     editButton.addEventListener('click', e => showForm(e));
     toggleButton.addEventListener('click', toggleView);
     formColour.addEventListener('change', changeFormColour);
-}
-
-// Photo modal functionality for gallery page
-if (document.querySelector('.js-photo-modal')) {
-    const photoModal = document.querySelector('.js-photo-modal');
-    const modalContent = document.querySelector('.js-photo-modal-content');
-    const photos = Array.from(document.querySelector('.js-gallery-container').querySelectorAll('.photo'));
-    const close = photoModal.querySelector('.js-close');
-
-    photos.forEach(photo => photo.addEventListener('click', (e) => {
-        photoModal.classList.remove('hidden');
-        modalContent.src = e.srcElement.src;
-    }));
-
-    // close modal when anywhere on screen is clicked apart from the image itself
-    close.addEventListener('click', () => photoModal.classList.add('hidden'));
-    photoModal.addEventListener('click', () => photoModal.classList.add('hidden'));
-    modalContent.addEventListener('click', (e) => e.stopPropagation());
 }
