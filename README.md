@@ -1,15 +1,13 @@
 TODO
 
-- draw grid front page
-- show modal in view
 - create routes
 - season page
-- Form modal
+- Form modal - can be inside regular modal
 - style modal
 - style form
 - Set up website
-- Get favicon
 - readme
+- design logo
 
 data -
 { 

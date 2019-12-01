@@ -113,9 +113,15 @@ td {
 /* Info modal */
 .modal {
   grid-area: info;
+  position: relative;
   justify-self: center;
   width: 60%;
   margin: 36px 30px;
+}
+
+.bounding-pixel {
+  grid-area: info;
+  color: white;
 }
 
 .modal-content {

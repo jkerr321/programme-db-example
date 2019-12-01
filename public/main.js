@@ -31,19 +31,24 @@ if (document.querySelector('.js-modal')) {
         }
     }
 
+    const positionModal = () => {
+        // to do - put this in sep function
+        const boundingPixel = document.querySelector('.js-bounding-pixel').getBoundingClientRect();
+        var top = boundingPixel.top;
+        let offset = 0;
+        if (top <= 0) {
+            offset = 0 - top;
+        }
+        modal.setAttribute('style', `top:${offset}px`)
+    }
+
     // NB Alas this isn't merged with functionality in toggleView because the modal is shown on load
     const showInfoModal = (event) => {
-        console.log('==================');
-        console.log('event.srcElement', event.srcElement);
-        console.log('==================');
         
         hideInitialModal();
-        const modalInfo = getModalData(event);
-        console.log('==================');
-        console.log('modalInfo', modalInfo);
-        console.log('==================');
-        
+        const modalInfo = getModalData(event);        
         populateModalData(modalInfo);
+        positionModal();
         // populateForm(modalInfo);
         showModalInfo();
         // hide table if it's in view
