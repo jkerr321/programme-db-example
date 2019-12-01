@@ -33,7 +33,7 @@ button:hover {
 .games {
   grid-area: games;
   display: grid;
-  grid-template-columns: repeat(24, 1fr);
+  grid-template-columns: repeat(27, 1fr);
   grid-template-rows: auto;
 }
 
@@ -115,7 +115,7 @@ td {
   grid-area: info;
   position: relative;
   justify-self: center;
-  width: 60%;
+  width: 70%;
   margin: 36px 30px;
 }
 

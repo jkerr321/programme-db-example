@@ -3,13 +3,15 @@ if (document.querySelector('.js-modal')) {
     const modal = document.querySelector('.js-modal');
     const modalContentInfo = document.querySelector('.js-modal-content-info');
     const modalContentForm = document.querySelector('.js-modal-content-form');
+    const modalEditable = document.querySelector('.js-modal-content-editable');
     const matches = document.querySelectorAll('.js-grid-match');
     const editButton = document.querySelector('.js-modal-edit-button');
+    const formWant = document.querySelector('.js-form-want');
 
     const hideInitialModal = () => {
         const modalContentInitial = document.querySelector('.js-modal-initial');
         if (!modalContentInitial.classList.contains('hidden')) {
-            modalContentInitial.classList.add('hidden')
+            modalContentInitial.classList.add('hidden');
         }
     }
 
@@ -44,14 +46,13 @@ if (document.querySelector('.js-modal')) {
 
     // NB Alas this isn't merged with functionality in toggleView because the modal is shown on load
     const showInfoModal = (event) => {
-        
         hideInitialModal();
         const modalInfo = getModalData(event);        
         populateModalData(modalInfo);
         positionModal();
-        // populateForm(modalInfo);
+        populateForm(modalInfo);
+        hideForm();
         showModalInfo();
-        // hide table if it's in view
         modal.classList.remove('hidden');
     }
 
@@ -119,54 +120,35 @@ if (document.querySelector('.js-modal')) {
 
     };
 
-    // const populateForm = (modalInfo) => {
-    //     // get form divs that we want to insert data into
-    //     const formTitle = document.querySelector('.js-form-title');
-    //     const formCommonName = document.querySelector('.js-form-common-name');
-    //     const formLatinName = document.querySelector('.js-form-latin-name');
-    //     const formAnnual = document.querySelector('.js-form-annual');
-    //     const formPerennial = document.querySelector('.js-form-perennial');
-    //     const formColour = document.querySelector('.js-form-colour');
-    //     const formColourOptions = formColour.querySelectorAll('option');
-    //     const formImage = document.querySelector('.js-form-image');
-    //     const formPlantedDate = document.querySelector('.js-form-planted-date');
-    //     const formLink = document.querySelector('.js-form-link');
-    //     const formNotes = document.querySelector('.js-form-notes');
-    //     const formPosition = document.querySelectorAll('.js-form-position');
+    const populateForm = (modalInfo) => {
+        // get form divs that we want to insert data into
+        const formGot = document.querySelector('.js-form-got');
+        const formNotes = document.querySelector('.js-form-notes');
+        const formPrice = document.querySelector('.js-form-price');
         
-    //     changeBorderColour(modalInfo.colour);
+        // set form placeholder values
+        formPrice.placeholder = modalInfo.price || '';
+        formNotes.placeholder = modalInfo.notes || '';
 
-    //     // set form placeholder values
-    //     formTitle.innerHTML = modalInfo.position || '';
-    //     formCommonName.placeholder = modalInfo.commonName || '';
-    //     formLatinName.placeholder = modalInfo.latinName || '';
-    //     formImage.placeholder = modalInfo.image || '';
-    //     formPlantedDate.placeholder = modalInfo.plantedDate || '';
-    //     formLink.placeholder = modalInfo.link || '';
-    //     formNotes.placeholder = modalInfo.notes || '';
-    //     formPosition.forEach(field => field.value = modalInfo.position || '');
+        // remove current radio button selection
+        formGot.removeAttribute('checked');
+        formWant.removeAttribute('checked');
 
-    //     // remove current radio button selection
-    //     formPerennial.removeAttribute('checked');
-    //     formAnnual.removeAttribute('checked');
-
-    //     if (modalInfo.perennialAnnual === 'P') formPerennial.setAttribute('checked', '');
-    //     if (modalInfo.perennialAnnual === 'A') formAnnual.setAttribute('checked', '');
-
-    //     // remove currently selected default colour value and update to current plant colour
-    //     for (let i = 0; i < formColour.options.length; i++) {
-    //         formColour.options[i].removeAttribute('selected');
-    //     }
-    //     for (let i = 0; i < formColour.options.length; i++) {
-    //         if (formColour.options[i].value.toLowerCase() === modalInfo.colour.toLowerCase()) {
-    //             formColour.options[i].setAttribute('selected', '');
-    //         }
-    //     }
-    // }
+        if (modalInfo.gotWant === 'got') {
+            formGot.setAttribute('checked', '');
+        } else {
+            formWant.setAttribute('checked', '');
+        }
+    }
 
     const showForm = () => {
         modalContentForm.classList.remove('hidden');
-        modalContentInfo.classList.add('hidden');
+        modalEditable.classList.add('hidden');
+    }
+
+    const hideForm = () => {
+        modalContentForm.classList.add('hidden');
+        modalEditable.classList.remove('hidden');
     }
 
     const showModalInfo = () => {
@@ -195,5 +177,5 @@ if (document.querySelector('.js-modal')) {
 
     matches.forEach(match => match.addEventListener('click', e => showInfoModal(e)));
     editButton.addEventListener('click', e => showForm(e));
-    // formColour.addEventListener('change', changeFormColour);
+    // formGotWant.addEventListener('change', changeFormColour);
 }

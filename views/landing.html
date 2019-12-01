@@ -29,45 +29,21 @@
             <div class="modal-points js-modal-points"></div>
             <div class="modal-competition js-modal-competition"></div>
             <div class="modal-match_notes js-modal-match_notes"></div>
-            <div class="modal-got_want js-modal-got_want"></div>
-            <div class="modal-price js-modal-price"></div>
-            <div class="modal-notes js-modal-notes"></div>
-        </div>
-        <div class="modal-content js-modal-content-form hidden">
-            <form method="POST" action="/{{seasonPath}}">
-                <div class="modal-title js-form-title"></div>
-                <div class="form-body">
-                    <label class="form-body__label" for="form-latin-name">Latin Name</label>
-                    <input type="text" name="latinName" placeholder="" id="form-latin-name" class="js-form-latin-name form-body__input"></input>
-                    <label class="form-body__label" for="form-common-name">Common Name</label>
-                    <input type="text" name="commonName" placeholder="" id="form-common-name" class="js-form-common-name form-body__input"></input>
-                </div>
-                <label for="perennial">Perennial</label>
-                <input type="radio" id="perennial" name="perennialAnnual" value="Perennial" class="js-form-perennial">
-                <label for="annual">Annual</label>
-                <input type="radio" id="annual" name="perennialAnnual" value="Annual" class="js-form-annual"></input>
-                <div class="form-body">
-                    <label class="form-body__label" for="colour">Colour
-                        <a href="/colours" target="_blank">(options)</a>
-                    </label>
-                    <select id="colour" name="colour" class="js-form-colour form-body__input">
-                        {{#each colours}}
-                        <option value="{{this}}">{{this}}</option>
-                        {{/each}}
-                    </select>
-                    <label class="form-body__label" for="form-planted-date">Planted Date</label>
-                    <input type="text" name="plantedDate" placeholder="" id="form-planted-date" class="js-form-planted-date form-body__input"></input>
-                    <label class="form-body__label" for="form-image">Image (URL)</label>
-                    <input type="text" name="image" placeholder="" id="form-image" class="js-form-image form-body__input"></input>
-                    <label class="form-body__label" for="form-link">RHS Link</label>
-                    <input type="text" name="link" placeholder="" id="form-link" class="js-form-link form-body__input"></input>
-                    <label class="form-body__label" for="notes">Notes</label>
-                    <textarea name="notes" rows="4" id="form-notes" class="js-form-notes form-body__input"></textarea>
-                    <input id="form-position" name="position" class="js-form-position hidden"></input>
-                    <input id="form-filled" name="filled" value="true" class="hidden"></input>
-                </div>
+            <div class="js-modal-content-editable">
+                <div class="modal-got_want js-modal-got_want"></div>
+                <div class="modal-price js-modal-price"></div>
+                <div class="modal-notes js-modal-notes"></div>
+            </div>
+            <form method="POST" class="js-modal-content-form hidden" action="/{{seasonPath}}">
+                <label for="got">Got</label>
+                <input type="radio" id="got" name="gotWant" value="got" class="js-form-got">
+                <label for="want">Want</label>
+                <input type="radio" id="want" name="gotWant" value="want" class="js-form-want"></input>
+                <label class="form-body__label" for="price">Programme Price</label>
+                <input name="price" rows="4" id="form-price" class="js-form-price form-body__input"></input>
+                <label class="form-body__label" for="notes">Programme Notes</label>
+                <textarea name="notes" rows="4" id="form-notes" class="js-form-notes form-body__input"></textarea>
                 <button class="button button--small border" type="submit">Submit</button>
-                <button class="button button--small border" type="submit" name="removePlant" value="true">Remove Plant</button>
             </form>
         </div>
     </div>
