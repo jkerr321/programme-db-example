@@ -1,11 +1,8 @@
 TODO
 
 Form
-- same as garden, only need to change prog notes, prog price, and got/want
-
 - create routes
 - season page
-- Form modal - can be inside regular modal
 - style modal
 - style form
 - Set up website

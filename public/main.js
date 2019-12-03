@@ -29,7 +29,8 @@ if (document.querySelector('.js-modal')) {
             matchNotes: event.srcElement.attributes['data-match-notes'].value,
             gotWant: event.srcElement.attributes['data-got-want'].value,
             price: event.srcElement.attributes['data-price'].value,
-            notes: event.srcElement.attributes['data-notes'].value
+            notes: event.srcElement.attributes['data-notes'].value,
+            id: event.srcElement.attributes['data-id'].value
         }
     }
 
@@ -125,10 +126,19 @@ if (document.querySelector('.js-modal')) {
         const formGot = document.querySelector('.js-form-got');
         const formNotes = document.querySelector('.js-form-notes');
         const formPrice = document.querySelector('.js-form-price');
+        const formId = document.querySelector('.js-form-id');
+        console.log('==================');
+        console.log('modalInfo.id', modalInfo.id);
+        console.log('==================');
         
         // set form placeholder values
         formPrice.placeholder = modalInfo.price || '';
         formNotes.placeholder = modalInfo.notes || '';
+        formId.value = modalInfo.id || '';
+        console.log('==================');
+        console.log('formId.value', formId.value);
+        console.log('==================');
+        
 
         // remove current radio button selection
         formGot.removeAttribute('checked');
