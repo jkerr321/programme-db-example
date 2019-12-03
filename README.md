@@ -1,6 +1,7 @@
 TODO
 
 Form
+- toggle got/wants
 - create routes
 - season page
 - style modal
@@ -9,6 +10,7 @@ Form
 - readme
 - design logo
 - linting
+- tidy up code - delete all the stuff not being used
 
 data -
 { 

@@ -22,19 +22,23 @@ button:hover {
   grid-template-columns: 1fr;
   grid-template-rows: min-content auto;
   grid-template-areas: 
-    "season-date"
+    "season-head"
     "games"
 }
 
-.season-date {
-  grid-area: season-date;
+.season-head {
+  grid-area: season-head;
 }
 
-.games {
+.games-dots {
   grid-area: games;
   display: grid;
   grid-template-columns: repeat(27, 1fr);
   grid-template-rows: auto;
+}
+
+.games-table {
+  grid-area: games;
 }
 
 
@@ -65,14 +69,18 @@ button:hover {
   border: 1px solid #131313;
 }
 
-.snips {
-  top: 5%;
-  left: 42%;
-  height: 60px;
-  width: 60px;
-  position: absolute;
-  opacity: 0;
+.faux-link {
+  text-decoration: underline;
 }
+
+.faux-link:hover {
+  cursor: pointer;
+}
+
+.faux-link:focus {
+  font-weight: strong;
+}
+
 
 /* Footer */
 .footer {

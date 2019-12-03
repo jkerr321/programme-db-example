@@ -7,6 +7,7 @@ if (document.querySelector('.js-modal')) {
     const matches = document.querySelectorAll('.js-grid-match');
     const editButton = document.querySelector('.js-modal-edit-button');
     const formWant = document.querySelector('.js-form-want');
+    const tableToggles = document.querySelectorAll('.js-table-toggle');
 
     const hideInitialModal = () => {
         const modalContentInitial = document.querySelector('.js-modal-initial');
@@ -127,18 +128,11 @@ if (document.querySelector('.js-modal')) {
         const formNotes = document.querySelector('.js-form-notes');
         const formPrice = document.querySelector('.js-form-price');
         const formId = document.querySelector('.js-form-id');
-        console.log('==================');
-        console.log('modalInfo.id', modalInfo.id);
-        console.log('==================');
         
         // set form placeholder values
         formPrice.placeholder = modalInfo.price || '';
         formNotes.placeholder = modalInfo.notes || '';
-        formId.value = modalInfo.id || '';
-        console.log('==================');
-        console.log('formId.value', formId.value);
-        console.log('==================');
-        
+        formId.value = modalInfo.id || '';        
 
         // remove current radio button selection
         formGot.removeAttribute('checked');
@@ -185,7 +179,30 @@ if (document.querySelector('.js-modal')) {
         }
     }
 
+    const toggleTable = (event) => {
+        //TODO make this less gross
+        const season = event.srcElement.attributes['data-season'].value;
+        const table = document.querySelector(`.js-games-table-${season}`);
+        const dots = document.querySelector(`.js-games-dots-${season}`);
+    
+        if (event.srcElement.classList.contains('js-show-more')) {
+            dots.classList.add('hidden');
+            table.classList.remove('hidden')
+        } else {
+            table.classList.add('hidden');
+            dots.classList.remove('hidden')
+        }
+
+        event.srcElement.classList.add('hidden');
+        if (event.srcElement.nextElementSibling) {
+            event.srcElement.nextElementSibling.classList.remove('hidden');
+        } else {
+            event.srcElement.previousElementSibling.classList.remove('hidden');
+        }
+    }
+
     matches.forEach(match => match.addEventListener('click', e => showInfoModal(e)));
+    tableToggles.forEach(toggle => toggle.addEventListener('click', e => toggleTable(e)));
     editButton.addEventListener('click', e => showForm(e));
     // formGotWant.addEventListener('change', changeFormColour);
 }

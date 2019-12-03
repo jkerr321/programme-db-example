@@ -56,17 +56,15 @@ const getData = (rows) => {
         }, []);
 
         // create empty array / objects for each season:
-        // [{
-        //     season: 1998/99,
-        //     matches: []
-        // },
         // {
-        //     season: 1999/00,
+        //     season: 1998/99,
+        //     season_string: 199899, // eg 200102 rather than 2001/02 - so that this can be inserted into html class and searched on later
         //     matches: []
-        // }]
+        // }
         const seasonsArray = seasons.reduce((acc, season) => {
             const obj = {}
             obj.season = season;
+            obj.season_string = season.substring(0, 4) + season.substring(5);
             obj.matches = [];
             acc.push(obj);
             return acc;
