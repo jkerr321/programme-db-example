@@ -2,6 +2,7 @@ TODO
 
 Form
 - toggle got/wants
+    - get container, query selector all matches within, if classlist contains got, add hidden
 - create routes
 - season page
 - style modal

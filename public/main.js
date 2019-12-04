@@ -189,18 +189,36 @@ if (document.querySelector('.js-modal')) {
         }
     }
 
-    const toggleWants = (event) => {
-        toggleSpan(event.srcElement);
-    }
-
-    const toggleTable = (event) => {
+    const getSeasonContainer = eventPath => {
         //TODO make this a reduce
-        let seasonContainer;        
-        event.path.forEach(element => {
+        let seasonContainer;
+        eventPath.forEach(element => {
             if (element.dataset && element.dataset.season) {
                 seasonContainer = element;
             }
         })
+        return seasonContainer;
+    }
+
+    const toggleWants = (event) => {
+        toggleSpan(event.srcElement);
+        const seasonContainer = getSeasonContainer(event.path);
+        const matchCells = seasonContainer.querySelectorAll('td');
+
+        if (event.srcElement.classList.contains('js-show-wants')) {
+            matchCells.forEach(cell => {
+                if (cell.innerHTML === 'Got') {
+                    //TODO is this a better way of doing some of the other stuff?
+                    cell.parentNode.classList.add('hidden');
+                }
+            })
+        } else {
+            matchCells.forEach(cell => cell.parentNode.classList.remove('hidden'));
+        }
+    }
+
+    const toggleTable = (event) => {
+        const seasonContainer = getSeasonContainer(event.path);
         const table = seasonContainer.querySelector(`.js-games-table`);
         const dots = seasonContainer.querySelector(`.js-games-dots`);
         const wantsToggle = seasonContainer.querySelector(`.js-wants-toggle`);
@@ -212,6 +230,7 @@ if (document.querySelector('.js-modal')) {
         } else {
             table.classList.add('hidden');
             dots.classList.remove('hidden');
+            wantsToggle.classList.add('hidden');
         }
 
         toggleSpan(event.srcElement);
