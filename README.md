@@ -1,9 +1,7 @@
 TODO
 
 Form
-- toggle got/wants
-    - get container, query selector all matches within, if classlist contains got, add hidden
-- create routes
+- filter
 - season page
 - style modal
 - style form
@@ -12,6 +10,8 @@ Form
 - design logo
 - linting
 - tidy up code - delete all the stuff not being used
+- do icon if season complete
+- do progress bar at the top?
 
 data -
 { 

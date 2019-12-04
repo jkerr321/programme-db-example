@@ -24,37 +24,37 @@ const updateSpreadsheet = async (rows, reqBody) => {
     }
 }
 
-const getRows = async () => {
+const getRows = async (sheetName) => {
     const doc = new GoogleSpreadsheet('1igrPkooUEO7EhljF3tjjuuZf67smjO9obRVngghhYu8');
     await promisify(doc.useServiceAccountAuth)(config);
     const info = await promisify(doc.getInfo)();
 
     //TODO delete other sheets so this is the only one we have so we can delete this code
     const sheet = info.worksheets.reduce((acc, worksheet, i) => {
-        if (worksheet.title === 'FullList') {
+        if (worksheet.title === sheetName) {
             acc = worksheet;
         }
         return acc;
     }, {});
-
+    
     const rows = await promisify(sheet.getRows)({
         "offset": 1,
         "limit": 5000
     });
-
     return rows;
 }
 
-const getData = (rows) => {
-    try {
-        //remove duplicate values for seasons
-        const seasons = rows.reduce((acc, row) => {
-            if (row.season) {
-                acc.includes(row.season) ? '' : acc.push(row.season);
-            }
-            return acc;
-        }, []);
+const getUniqueList = (rows, value) => {
+    return rows.reduce((acc, row) => {
+        if (row[value]) {
+            acc.includes(row[value]) ? '' : acc.push(row[value]);
+        }
+        return acc;
+    }, []);
+}
 
+const getFullListData = (rows, seasons) => {
+    try {
         // create empty array / objects for each season:
         // {
         //     season: 1998/99,
@@ -105,14 +105,16 @@ const getData = (rows) => {
 module.exports = async (req, res) => {
     try {
         //TODO update andrews to use this as well - more succint code
-        let rows = await getRows();
+        let rows = await getRows('FullList');
         if (req.method === "POST") {
             await updateSpreadsheet(rows, req.body);
-            rows = await getRows();
+            rows = await getRows('FullList');
         }
-        const data = await getData(rows);
+        const seasonData = getUniqueList(rows, 'season');
+        const opponentData = getUniqueList(rows, 'opponent');
+        const fullListData = await getFullListData(rows, seasonData);
 
-        return res.render('landing', { data });
+        return res.render('landing', { seasonData, opponentData, fullListData });
     } catch (err) {
         console.log('render error', err);
     };
