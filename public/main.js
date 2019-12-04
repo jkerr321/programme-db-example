@@ -8,6 +8,7 @@ if (document.querySelector('.js-modal')) {
     const editButton = document.querySelector('.js-modal-edit-button');
     const formWant = document.querySelector('.js-form-want');
     const tableToggles = document.querySelectorAll('.js-table-toggle');
+    const wantToggles = document.querySelectorAll('.js-wants-toggle');
 
     const hideInitialModal = () => {
         const modalContentInitial = document.querySelector('.js-modal-initial');
@@ -179,30 +180,46 @@ if (document.querySelector('.js-modal')) {
         }
     }
 
+    const toggleSpan = (srcElement) => {
+        srcElement.classList.add('hidden');
+        if (srcElement.nextElementSibling) {
+            srcElement.nextElementSibling.classList.remove('hidden');
+        } else {
+            srcElement.previousElementSibling.classList.remove('hidden');
+        }
+    }
+
+    const toggleWants = (event) => {
+        toggleSpan(event.srcElement);
+    }
+
     const toggleTable = (event) => {
-        //TODO make this less gross
-        const season = event.srcElement.attributes['data-season'].value;
-        const table = document.querySelector(`.js-games-table-${season}`);
-        const dots = document.querySelector(`.js-games-dots-${season}`);
-    
+        //TODO make this a reduce
+        let seasonContainer;        
+        event.path.forEach(element => {
+            if (element.dataset && element.dataset.season) {
+                seasonContainer = element;
+            }
+        })
+        const table = seasonContainer.querySelector(`.js-games-table`);
+        const dots = seasonContainer.querySelector(`.js-games-dots`);
+        const wantsToggle = seasonContainer.querySelector(`.js-wants-toggle`);
+
         if (event.srcElement.classList.contains('js-show-more')) {
             dots.classList.add('hidden');
-            table.classList.remove('hidden')
+            table.classList.remove('hidden');
+            wantsToggle.classList.remove('hidden');
         } else {
             table.classList.add('hidden');
-            dots.classList.remove('hidden')
+            dots.classList.remove('hidden');
         }
 
-        event.srcElement.classList.add('hidden');
-        if (event.srcElement.nextElementSibling) {
-            event.srcElement.nextElementSibling.classList.remove('hidden');
-        } else {
-            event.srcElement.previousElementSibling.classList.remove('hidden');
-        }
+        toggleSpan(event.srcElement);
     }
 
     matches.forEach(match => match.addEventListener('click', e => showInfoModal(e)));
     tableToggles.forEach(toggle => toggle.addEventListener('click', e => toggleTable(e)));
+    wantToggles.forEach(toggle => toggle.addEventListener('click', e => toggleWants(e)));
     editButton.addEventListener('click', e => showForm(e));
     // formGotWant.addEventListener('change', changeFormColour);
 }

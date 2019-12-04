@@ -2,24 +2,24 @@
     <div class="header">David's Cobblers Database</div>
     <div class="matches-container">
     {{#data}}
-        <div class="matches">
+        <div class="matches" data-season="{{season_string}}">
             <div class="season-head">
                 <span class="season-date">{{season}}</span>
                 <span class="js-table-toggle faux-link">
-                    <span class="js-show-more" data-season={{season_string}}>Show More</span>
-                    <span class="js-show-less hidden" data-season={{season_string}}>Show Less</span>
+                    <span class="js-show-more">Show More</span>
+                    <span class="js-show-less hidden">Show Less</span>
                 </span>
-                <span class="js-wants-toggle-head faux-link hidden">
-                    <span class="js-wants-toggle" data-season={{season_string}}>Show Wants</span>
-                    <span class="js-wants-toggle hidden" data-season={{season_string}}>Show All</span>
+                <span class="js-wants-toggle faux-link hidden">
+                    <span class="js-show-wants">Show Wants</span>
+                    <span class="js-show-all hidden">Show All</span>
                 </span>
             </div>
-            <div class="games-dots js-games-dots-{{season_string}}">
+            <div class="games-dots js-games-dots">
             {{#matches}}
              {{>grid-match}}
             {{/matches}}
             </div>
-            <div class="games-table js-games-table-{{season_string}} hidden">
+            <div class="games-table js-games-table hidden">
                 <table>
                     <thead>
                         <tr>
