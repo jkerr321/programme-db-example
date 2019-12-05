@@ -53,8 +53,9 @@ const getUniqueList = (rows, value) => {
     }, []);
 }
 
-const getFullListData = (rows, seasons) => {
+const getFullListData = (rows) => {
     try {
+        const seasons = getUniqueList(rows, 'season');
         // create empty array / objects for each season:
         // {
         //     season: 1998/99,
@@ -102,19 +103,38 @@ const getFullListData = (rows, seasons) => {
     }
 }
 
+const filterRows = async (rows, reqBody) => {
+    return rows.filter(row => {
+        let result = true;
+        if (reqBody.seasonFilter && !reqBody.seasonFilter.includes(row.season)) {result = false};
+        if (reqBody.opponentFilter && !reqBody.opponentFilter.includes(row.opponent)) {result = false};
+        if (reqBody.gotWantFilter && row.gotwant !== reqBody.gotWantFilter) {result = false};
+        if (reqBody.homeAwayFilter && row.homeaway !== reqBody.homeAwayFilter) {result = false};
+        return result;
+    });
+}
+
 module.exports = async (req, res) => {
     try {
         //TODO update andrews to use this as well - more succint code
-        let rows = await getRows('FullList');
-        if (req.method === "POST") {
-            await updateSpreadsheet(rows, req.body);
-            rows = await getRows('FullList');
-        }
+        const rows = await getRows('FullList');
         const seasonData = getUniqueList(rows, 'season');
-        const opponentData = getUniqueList(rows, 'opponent');
-        const fullListData = await getFullListData(rows, seasonData);
+        const opponentData = getUniqueList(rows, 'opponent').sort();
+        let allData;
 
-        return res.render('landing', { seasonData, opponentData, fullListData });
+        if (req.method === "POST") {
+            if (req.body.filter) {
+                filteredRows = await filterRows(rows, req.body);
+                allData = await getFullListData(filteredRows);
+            } else {
+                await updateSpreadsheet(rows, req.body);
+                updatedRows = await getRows('FullList');
+                allData = await getFullListData(updatedRows);
+            }
+        } else {
+            allData = await getFullListData(rows, seasonData);
+        }
+        return res.render('landing', { seasonData, opponentData, allData });
     } catch (err) {
         console.log('render error', err);
     };

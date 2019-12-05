@@ -7,37 +7,39 @@
                 <input type="radio" id="got" name="gotWantFilter" value="Got">
                 <label for="want">Want</label>
                 <input type="radio" id="want" name="gotWantFilter" value="Want"></input>
-                <label for="want">All</label>
-                <input type="radio" id="all" name="gotWantFilter" value="All"></input>
+                <label for="all">All</label>
+                <input type="radio" id="all" name="gotWantFilter" value=""></input>
             </div>
             <div>
                 <label for="home">Home</label>
                 <input type="radio" id="home" name="homeAwayFilter" value="Home">
                 <label for="away">Away</label>
                 <input type="radio" id="away" name="homeAwayFilter" value="Away"></input>
-                <label for="want">All</label>
-                <input type="radio" id="all" name="homeAwayFilter" value="All"></input>
+                <label for="all">All</label>
+                <input type="radio" id="all" name="homeAwayFilter" value=""></input>
             </div>
             <div>
                 {{#seasonData}}
                 <div>
-                    <input type="checkbox" id="{{this}}" name="{{this}}">
-                    <label for="{{this}}">{{this}}</label>
+                    <input type="checkbox" id="seasonFilter" name="seasonFilter" value="{{this}}">
+                    <label for="seasonFilter">{{this}}</label>
                 </div>
                 {{/seasonData}}
             </div>
             <div>
                 {{#opponentData}}
                 <div>
-                    <input type="checkbox" id="{{this}}" name="{{this}}">
-                    <label for="{{this}}">{{this}}</label>
+                    <input type="checkbox" id="opponentFilter" name="opponentFilter" value="{{this}}">
+                    <label for="opponentFilter">{{this}}</label>
                 </div>
                 {{/opponentData}}
             </div>
+            <input id="filter" name="filter" class="hidden" value="filter"></input>
+            <button type="submit">Filter</button>
         </form>
     </div>
     <div class="matches-container">
-    {{#fullListData}}
+    {{#allData}}
         <div class="matches" data-season="{{season_string}}">
             <div class="season-head">
                 <span class="season-date">{{season}}</span>
@@ -96,7 +98,7 @@
                 </table>
             </div>
         </div>
-    {{/fullListData}}
+    {{/allData}}
     </div>
     <div class="bounding-pixel js-bounding-pixel">.</div>
     <div class="modal js-modal">
