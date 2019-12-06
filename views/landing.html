@@ -1,7 +1,13 @@
 <div class="layout">
     <div class="header">
         <div>David's Cobblers Database</div>
-        <form action="/" method="POST">
+    </div>
+    <div class="filter">
+        <div class="js-filter-toggle faux-link">
+            <span>Filter Data >></span>
+            <span class="hidden">Hide Filter <<</span>
+        </div>
+        <form class="js-filter-form hidden" action="/" method="POST">
             <div>
                 <label for="got">Got</label>
                 <input type="radio" id="got" name="gotWantFilter" value="Got">
@@ -18,7 +24,7 @@
                 <label for="all">All</label>
                 <input type="radio" id="all" name="homeAwayFilter" value=""></input>
             </div>
-            <div>
+            <div class="checkbox">
                 {{#seasonData}}
                 <div>
                     <input type="checkbox" id="seasonFilter" name="seasonFilter" value="{{this}}">
@@ -26,7 +32,7 @@
                 </div>
                 {{/seasonData}}
             </div>
-            <div>
+            <div class="checkbox">
                 {{#opponentData}}
                 <div>
                     <input type="checkbox" id="opponentFilter" name="opponentFilter" value="{{this}}">

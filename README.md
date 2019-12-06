@@ -1,8 +1,9 @@
 TODO
 
 Form
-- filter
-- season page
+- style filter - grid
+- transition on show and hide
+- choose fonts
 - style modal
 - style form
 - Set up website

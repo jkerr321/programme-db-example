@@ -9,6 +9,7 @@ if (document.querySelector('.js-modal')) {
     const formWant = document.querySelector('.js-form-want');
     const tableToggles = document.querySelectorAll('.js-table-toggle');
     const wantToggles = document.querySelectorAll('.js-wants-toggle');
+    const filterToggle = document.querySelector('.js-filter-toggle');
 
     const hideInitialModal = () => {
         const modalContentInitial = document.querySelector('.js-modal-initial');
@@ -161,6 +162,17 @@ if (document.querySelector('.js-modal')) {
         modalContentForm.classList.add('hidden');
     }
 
+    //TODO dry out toggle functions - can they be abstracted?
+    const toggleFilter = (event) => {
+        toggleSpan(event.srcElement);
+        const filter = document.querySelector('.js-filter-form');
+        if(filter.classList.contains('hidden')) {
+            filter.classList.remove('hidden');
+        } else {
+            filter.classList.add('hidden');
+        }
+    }
+
     const changeBorderColour = newColour => {
         if(newColour) {
             modalContentInfo.setAttribute('style', `border: 20px solid ${newColour}`)
@@ -240,5 +252,6 @@ if (document.querySelector('.js-modal')) {
     tableToggles.forEach(toggle => toggle.addEventListener('click', e => toggleTable(e)));
     wantToggles.forEach(toggle => toggle.addEventListener('click', e => toggleWants(e)));
     editButton.addEventListener('click', e => showForm(e));
+    filterToggle.addEventListener('click', e => toggleFilter(e));
     // formGotWant.addEventListener('change', changeFormColour);
 }
