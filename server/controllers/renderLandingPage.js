@@ -120,12 +120,12 @@ module.exports = async (req, res) => {
 		const rows = await getRows('FullList');
 		const seasonData = getUniqueList(rows, 'season');
 		const opponentData = getUniqueList(rows, 'opponent').sort();
-		let allData;
+        let allData;
 
 		if (req.method === 'POST') {
 			if (req.body.filter) {
 				const filteredRows = await filterRows(rows, req.body);
-				allData = await getFullListData(filteredRows);
+                allData = await getFullListData(filteredRows);
 			} else {
 				await updateSpreadsheet(rows, req.body);
 				const updatedRows = await getRows('FullList');

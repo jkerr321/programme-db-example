@@ -95,16 +95,6 @@
                         <td>{{this.points}}</td>
                         <td>{{this.competition}}</td>
                         <td>{{this.match_notes}}</td>
-                        <!-- <form action="">
-                            <td>
-                                <select id="colour" name="colour" class="js-form-colour form-body__input">
-                                    <option value="want">want</option>
-                                    <option value="got">got</option>
-                                </select>
-                            </td>
-                            <td><input type="text"></input></td>
-                            <td><input type="text"></input></td>
-                        </form> -->
                         <td>{{this.got_want}}</td>
                         <td>{{this.price}}</td>
                         <td>{{this.notes}}</td>
@@ -115,36 +105,42 @@
         </div>
     </div>
 {{/allData}}
-<div class="modal js-modal">
-    <div class="modal-content js-modal-content-info hidden">
+<div class="modal js-modal hidden">
+    <div class="modal-content typography--small js-modal-content-info hidden">
         <div class="modal-season js-modal-season"></div>
         <div class="modal-league js-modal-league"></div>
         <div class="modal-date js-modal-date"></div>
-        <div class="modal-opponent js-modal-opponent"></div>
+        <div class="modal-opponent js-modal-opponent typography--large claret"></div>
         <div class="modal-home_away js-modal-home_away"></div>
         <div class="modal-score js-modal-score"></div>
-        <div class="modal-position js-modal-position"></div>
-        <div class="modal-points js-modal-points"></div>
         <div class="modal-competition js-modal-competition"></div>
         <div class="modal-match_notes js-modal-match_notes"></div>
         <div class="js-modal-content-editable">
-            <div class="modal-got_want js-modal-got_want"></div>
+            <div class="modal-got_want js-modal-got_want typography--large claret"></div>
             <div class="modal-price js-modal-price"></div>
             <div class="modal-notes js-modal-notes"></div>
             <button class="button button--small border js-modal-edit-button">Edit</button>
         </div>
-        <form method="POST" class="js-modal-content-form hidden" action="/{{seasonPath}}">
-            <label for="got">Got</label>
-            <input type="radio" id="got" name="gotWant" value="Got" class="js-form-got">
-            <label for="want">Want</label>
-            <input type="radio" id="want" name="gotWant" value="Want" class="js-form-want"></input>
-            <label class="form-body__label" for="programmePrice">Programme Price</label>
-            <input name="programmePrice" rows="4" id="form-price" class="js-form-price form-body__input"></input>
-            <label class="form-body__label" for="programmeNotes">Programme Notes</label>
-            <textarea name="programmeNotes" rows="4" id="form-notes" class="js-form-notes form-body__input"></textarea>
+        <form method="POST" class="section js-modal-content-form hidden" action="/{{seasonPath}}">
+            <div>
+                <label for="got">Got</label>
+                <input type="radio" id="got" name="gotWant" value="Got" class="js-form-got">
+            </div>
+            <div>
+                <label for="want">Want</label>
+                <input type="radio" id="want" name="gotWant" value="Want" class="js-form-want"></input>
+            </div>
+            <div>
+                <label for="programmePrice">Programme Price</label>
+                <input name="programmePrice" rows="4" id="form-price" class="js-form-price"></input>
+            </div>
+            <div>
+                <label for="programmeNotes">Programme Notes</label>
+                <textarea name="programmeNotes" rows="4" id="form-notes" class="js-form-notes"></textarea>
+            </div>
             <input id="form-id" name="id" class="js-form-id hidden"></input>
             <button class="button button--small border" type="submit">Submit</button>
         </form>
     </div>
 </div>
-<div class="footer">This is the footer</div>
+<div class="footer"><a href="https://docs.google.com/spreadsheets/d/1igrPkooUEO7EhljF3tjjuuZf67smjO9obRVngghhYu8/edit#gid=1616708976" target="_blank">View Data</a></div>

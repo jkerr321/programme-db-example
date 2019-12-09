@@ -19,8 +19,6 @@ if (document.querySelector('.js-modal')) {
 			opponent: event.srcElement.attributes['data-opponent'].value,
 			homeAway: event.srcElement.attributes['data-home-away'].value,
 			score: event.srcElement.attributes['data-score'].value,
-			position: event.srcElement.attributes['data-position'].value,
-			points: event.srcElement.attributes['data-points'].value,
 			competition: event.srcElement.attributes['data-competition'].value,
 			matchNotes: event.srcElement.attributes['data-match-notes'].value,
 			gotWant: event.srcElement.attributes['data-got-want'].value,
@@ -52,8 +50,6 @@ if (document.querySelector('.js-modal')) {
 		const modalOpponent = document.querySelector('.js-modal-opponent');
 		const modalHomeAway = document.querySelector('.js-modal-home_away');
 		const modalScore = document.querySelector('.js-modal-score');
-		const modalPosition = document.querySelector('.js-modal-position');
-		const modalPoints = document.querySelector('.js-modal-points');
 		const modalCompetition = document.querySelector('.js-modal-competition');
 		const modalMatchNotes = document.querySelector('.js-modal-match_notes');
 		const modalGotWant = document.querySelector('.js-modal-got_want');
@@ -67,8 +63,6 @@ if (document.querySelector('.js-modal')) {
 		modalOpponent.innerHTML = modalInfo.opponent || '';
 		modalHomeAway.innerHTML = modalInfo.homeAway || '';
 		modalScore.innerHTML = modalInfo.score || '';
-		modalPosition.innerHTML = modalInfo.position || '';
-		modalPoints.innerHTML = modalInfo.points || '';
 		modalCompetition.innerHTML = modalInfo.competition || '';
 		modalGotWant.innerHTML = modalInfo.gotWant || '';
 
@@ -89,18 +83,6 @@ if (document.querySelector('.js-modal')) {
 			modalNotes.innerHTML = `Programme Notes: ${modalInfo.notes}`;
 		} else {
 			modalNotes.innerHTML = '';
-		}
-
-		if (modalInfo.points) {
-			modalPoints.innerHTML = `Points: ${modalInfo.points}`;
-		} else {
-			modalPoints.innerHTML = '';
-		}
-
-		if (modalInfo.position) {
-			modalPosition.innerHTML = `League Position: ${modalInfo.position}`;
-		} else {
-			modalPosition.innerHTML = '';
 		}
 
 	};

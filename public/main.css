@@ -12,16 +12,20 @@ body {
   margin: 20px auto;
 }
 
+.typography--small {
+  font-size: 16px;;
+}
+
 .typography--large {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .typography--medium {
   font-size: 18px;
 }
 
-.typography--small {
-
+.claret {
+  color: crimson;
 }
 
 .section {
@@ -31,9 +35,9 @@ body {
 .button {
   color: #131313; 
   background-color: white;
-  font-size: 20px;
+  font-size: 16px;
   height: 32px;
-  margin: 4px auto;
+  margin: 16px auto;
   border: 1px solid #131313;
 }
 
@@ -150,57 +154,20 @@ td {
 
 /* Info modal */
 .modal {
-  width: 70%;
-  margin: 36px 30px;
+  width: 25%;
+  margin: 24px auto;
+  border: 2px dotted;
 }
 
 .modal-content {
+  margin: 24px;
   padding: 24px;
-  border: 20px solid ghostwhite;
+  border: 2px dotted;
   text-align: center;
 }
 
-.modal-image img {
-  max-width: 80%;
-  margin-top: 18px;
-}
-
-.modal-title {
-  font-family: 'Bangers';
-  margin: 20px 12px;
-  font-size: 44px;
-}
-
-.modal-common-name {
-  font-size: 28px;
-}
-
-.modal-perennial-annual {
-  font-size: 24px;
-  margin: 12px auto;
-}
-
-.modal-link {
-  margin: 20px auto 24px;
-}
-
-.form-body__label {
-  vertical-align: top;
-  text-align: right;
-  margin-right: 8px;
-}
-
-.form-body__input {
-  text-align: left;
-  margin-left: 8px;
-}
-
-.form-body {
-  margin: 14px 12px;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-row-gap: 14px;
-  text-align: left;
+.modal-content div {
+  margin: 0 0 8px 0;
 }
 
 /* Little bit of responsiveness */
