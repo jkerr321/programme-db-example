@@ -1,14 +1,14 @@
 <div class="layout">
     <div class="header">
-        <div>David's Cobblers Database</div>
+        <div class="typography--head">David's Cobblers Database</div>
     </div>
-    <div class="filter">
+    <div class="section filter">
         <div class="js-filter-toggle faux-link">
             <span>Filter Data >></span>
             <span class="hidden">Hide Filter <<</span>
         </div>
         <form class="js-filter-form hidden" action="/" method="POST">
-            <div>
+            <div class="section">
                 <label for="got">Got</label>
                 <input type="radio" id="got" name="gotWantFilter" value="Got">
                 <label for="want">Want</label>
@@ -16,7 +16,7 @@
                 <label for="all">All</label>
                 <input type="radio" id="all" name="gotWantFilter" value=""></input>
             </div>
-            <div>
+            <div class="section">
                 <label for="home">Home</label>
                 <input type="radio" id="home" name="homeAwayFilter" value="Home">
                 <label for="away">Away</label>
@@ -24,7 +24,7 @@
                 <label for="all">All</label>
                 <input type="radio" id="all" name="homeAwayFilter" value=""></input>
             </div>
-            <div class="checkbox">
+            <div class="checkbox section">
                 {{#seasonData}}
                 <div>
                     <input type="checkbox" id="seasonFilter" name="seasonFilter" value="{{this}}">
@@ -32,7 +32,7 @@
                 </div>
                 {{/seasonData}}
             </div>
-            <div class="checkbox">
+            <div class="checkbox section">
                 {{#opponentData}}
                 <div>
                     <input type="checkbox" id="opponentFilter" name="opponentFilter" value="{{this}}">
@@ -41,12 +41,12 @@
                 {{/opponentData}}
             </div>
             <input id="filter" name="filter" class="hidden" value="filter"></input>
-            <button type="submit">Filter</button>
+            <button class="button" type="submit">Filter</button>
         </form>
     </div>
     <div class="matches-container">
     {{#allData}}
-        <div class="matches" data-season="{{season_string}}">
+        <div class="matches section" data-season="{{season_string}}">
             <div class="season-head">
                 <span class="season-date">{{season}}</span>
                 <span class="js-table-toggle faux-link">
@@ -95,6 +95,16 @@
                             <td>{{this.points}}</td>
                             <td>{{this.competition}}</td>
                             <td>{{this.match_notes}}</td>
+                            <!-- <form action="">
+                                <td>
+                                    <select id="colour" name="colour" class="js-form-colour form-body__input">
+                                        <option value="want">want</option>
+                                        <option value="got">got</option>
+                                    </select>
+                                </td>
+                                <td><input type="text"></input></td>
+                                <td><input type="text"></input></td>
+                            </form> -->
                             <td>{{this.got_want}}</td>
                             <td>{{this.price}}</td>
                             <td>{{this.notes}}</td>

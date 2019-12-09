@@ -1,6 +1,9 @@
 /* Grids */
 body {
   font-family: 'Raleway', sans-serif;
+  background-color: white;
+  color: #131313;
+  text-align: center;
 }
 
 .layout {
@@ -8,22 +11,58 @@ body {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, min-content);
   grid-template-areas: 
-    "header header"
-    "filter filter"
-    "matches-container info"
-    "footer footer";
+    "header"
+    "filter"
+    "matches-container"
+    "footer";
 }
 
-button:hover {
+.typography--head {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.typography--large {
+
+}
+
+.typography--medium {
+
+}
+
+.typography--small {
+
+}
+
+.section {
+  margin: 12px 0;
+}
+
+.button {
+  color: #131313; 
+  background-color: white;
+  font-size: 20px;
+  height: 32px;
+  margin: 4px auto;
+  border: 1px solid #131313;
+}
+
+.button:hover {
   cursor: pointer;
+  color: white;
+  background-color: #131313;
 }
 
 .matches-container {
-  grid-area: matches-container;
+  grid-area: matches-container;  
 }
 
 .filter {
   grid-area: filter;
+}
+
+.header {
+  grid-area: header;
 }
 
 .checkbox {
@@ -39,17 +78,21 @@ button:hover {
   grid-template-areas: 
     "season-head"
     "games"
+    "info"
 }
 
 .season-head {
   grid-area: season-head;
+  font-size: 24px;
+  margin: 6px 0 2px 0;
 }
 
 .games-dots {
   grid-area: games;
   display: grid;
-  grid-template-columns: repeat(27, 1fr);
+  grid-template-columns: repeat(27, min-content);
   grid-template-rows: auto;
+  justify-self: center;
 }
 
 .games-table {
@@ -61,11 +104,15 @@ button:hover {
 .grid-match {
   height: 35px;
   width: 35px;
+  margin: 0.5px;
   border-radius: 100%;
 }
 .grid-match:focus {
   outline: none;
   box-shadow: 0px 0px 10px;
+}
+.grid-match:hover {
+  cursor: pointer;
 }
 
 .Got {
@@ -73,7 +120,7 @@ button:hover {
 }
 
 .Want {
-  background-color: ghostwhite;
+  background-color: white;
 }
 
 .Away {
@@ -86,6 +133,8 @@ button:hover {
 
 .faux-link {
   text-decoration: underline;
+  font-size: 18px;
+  margin: 0 0 0 10px;
 }
 
 .faux-link:hover {

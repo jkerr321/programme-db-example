@@ -1,7 +1,8 @@
 TODO
 
 Form
-- style filter - grid
+- show modal under each section
+- style table col width
 - transition on show and hide
 - style modal
 - style form
