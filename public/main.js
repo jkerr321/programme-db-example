@@ -125,6 +125,12 @@ if (document.querySelector('.js-modal')) {
 		modalContentForm.classList.add('hidden');
 	};
 
+	const hideModal = () => {
+		if (!modal.classList.contains('hidden')) {
+			modal.classList.add('hidden');
+		}
+	}
+
 	//TODO dry out toggle functions - can they be abstracted?
 	const toggleFilter = (event) => {
 		toggleSpan(event.srcElement);
@@ -193,6 +199,7 @@ if (document.querySelector('.js-modal')) {
 	};
 
 	const toggleTable = (event) => {
+		hideModal();
 		const seasonContainer = getSeasonContainer(event.path);
 		const table = seasonContainer.querySelector('.js-games-table');
 		const dots = seasonContainer.querySelector('.js-games-dots');
