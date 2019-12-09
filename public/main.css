@@ -54,7 +54,20 @@ body {
 .checkbox {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
+  grid-auto-flow: column;
+  text-align: left;
+}
+
+.checkbox__season {
+  grid-template-rows: repeat(25, 1fr);
+  max-width: 60%;
+  margin: auto;
+}
+
+.checkbox__opponent {
+  grid-template-rows: repeat(54, 1fr);
+  max-width: 90%;
+  margin: auto;
 }
 
 .season-head {

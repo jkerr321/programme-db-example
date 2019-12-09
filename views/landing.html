@@ -24,7 +24,7 @@
                 <label for="all">All</label>
                 <input type="radio" id="all" name="homeAwayFilter" value=""></input>
             </div>
-            <div class="checkbox section">
+            <div class="checkbox checkbox__season section">
                 {{#seasonData}}
                 <div>
                     <input type="checkbox" id="seasonFilter" name="seasonFilter" value="{{this}}">
@@ -32,7 +32,7 @@
                 </div>
                 {{/seasonData}}
             </div>
-            <div class="checkbox section">
+            <div class="checkbox checkbox__opponent section">
                 {{#opponentData}}
                 <div>
                     <input type="checkbox" id="opponentFilter" name="opponentFilter" value="{{this}}">
