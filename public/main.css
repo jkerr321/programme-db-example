@@ -35,7 +35,7 @@ body {
 }
 
 .section {
-  margin: 12px 0;
+  padding: 10px 0;
 }
 
 .button {
@@ -59,6 +59,10 @@ body {
 
 .filter {
   grid-area: filter;
+}
+
+.filter__content {
+  background-color: whitesmoke;
 }
 
 .header {

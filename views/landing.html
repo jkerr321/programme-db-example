@@ -7,42 +7,44 @@
             <span>Filter Data >></span>
             <span class="hidden">Hide Filter <<</span>
         </div>
-        <form class="js-filter-form hidden" action="/" method="POST">
-            <div class="section">
-                <label for="got">Got</label>
-                <input type="radio" id="got" name="gotWantFilter" value="Got">
-                <label for="want">Want</label>
-                <input type="radio" id="want" name="gotWantFilter" value="Want"></input>
-                <label for="all">All</label>
-                <input type="radio" id="all" name="gotWantFilter" value=""></input>
-            </div>
-            <div class="section">
-                <label for="home">Home</label>
-                <input type="radio" id="home" name="homeAwayFilter" value="Home">
-                <label for="away">Away</label>
-                <input type="radio" id="away" name="homeAwayFilter" value="Away"></input>
-                <label for="all">All</label>
-                <input type="radio" id="all" name="homeAwayFilter" value=""></input>
-            </div>
-            <div class="checkbox section">
-                {{#seasonData}}
-                <div>
-                    <input type="checkbox" id="seasonFilter" name="seasonFilter" value="{{this}}">
-                    <label for="seasonFilter">{{this}}</label>
+        <div class="section js-filter-form filter__content hidden">
+            <form class="section" action="/" method="POST">
+                <div class="section">
+                    <label for="got">Got</label>
+                    <input type="radio" id="got" name="gotWantFilter" value="Got">
+                    <label for="want">Want</label>
+                    <input type="radio" id="want" name="gotWantFilter" value="Want"></input>
+                    <label for="all">All</label>
+                    <input type="radio" id="all" name="gotWantFilter" value=""></input>
                 </div>
-                {{/seasonData}}
-            </div>
-            <div class="checkbox section">
-                {{#opponentData}}
-                <div>
-                    <input type="checkbox" id="opponentFilter" name="opponentFilter" value="{{this}}">
-                    <label for="opponentFilter">{{this}}</label>
+                <div class="section">
+                    <label for="home">Home</label>
+                    <input type="radio" id="home" name="homeAwayFilter" value="Home">
+                    <label for="away">Away</label>
+                    <input type="radio" id="away" name="homeAwayFilter" value="Away"></input>
+                    <label for="all">All</label>
+                    <input type="radio" id="all" name="homeAwayFilter" value=""></input>
                 </div>
-                {{/opponentData}}
-            </div>
-            <input id="filter" name="filter" class="hidden" value="filter"></input>
-            <button class="button" type="submit">Filter</button>
-        </form>
+                <div class="checkbox section">
+                    {{#seasonData}}
+                    <div>
+                        <input type="checkbox" id="seasonFilter" name="seasonFilter" value="{{this}}">
+                        <label for="seasonFilter">{{this}}</label>
+                    </div>
+                    {{/seasonData}}
+                </div>
+                <div class="checkbox section">
+                    {{#opponentData}}
+                    <div>
+                        <input type="checkbox" id="opponentFilter" name="opponentFilter" value="{{this}}">
+                        <label for="opponentFilter">{{this}}</label>
+                    </div>
+                    {{/opponentData}}
+                </div>
+                <input id="filter" name="filter" class="hidden" value="filter"></input>
+                <button class="button" type="submit">Filter</button>
+            </form>
+        </div>
     </div>
     <div class="matches-container">
     {{#allData}}
@@ -95,16 +97,6 @@
                             <td>{{this.points}}</td>
                             <td>{{this.competition}}</td>
                             <td>{{this.match_notes}}</td>
-                            <!-- <form action="">
-                                <td>
-                                    <select id="colour" name="colour" class="js-form-colour form-body__input">
-                                        <option value="want">want</option>
-                                        <option value="got">got</option>
-                                    </select>
-                                </td>
-                                <td><input type="text"></input></td>
-                                <td><input type="text"></input></td>
-                            </form> -->
                             <td>{{this.got_want}}</td>
                             <td>{{this.price}}</td>
                             <td>{{this.notes}}</td>

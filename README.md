@@ -1,7 +1,7 @@
 TODO
 
 Form
-- show modal under each section
+- filter alphabetically up and down rather than horizontal
 - style table col width
 - transition on show and hide
 - style modal
