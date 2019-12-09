@@ -1,6 +1,11 @@
 TODO
 
 Form
+<<<<<<< HEAD
+=======
+- Default to table view on filter data
+- show modal under each section
+>>>>>>> append modal to season rather than within grid
 - filter alphabetically up and down rather than horizontal
 - style table col width
 - transition on show and hide

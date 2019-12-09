@@ -6,28 +6,18 @@ body {
   text-align: center;
 }
 
-.layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, min-content);
-  grid-template-areas: 
-    "header"
-    "filter"
-    "matches-container"
-    "footer";
-}
-
 .typography--head {
   font-size: 60px;
   font-weight: bold;
+  margin: 20px auto;
 }
 
 .typography--large {
-
+    font-size: 24px;
 }
 
 .typography--medium {
-
+  font-size: 18px;
 }
 
 .typography--small {
@@ -53,20 +43,8 @@ body {
   background-color: #131313;
 }
 
-.matches-container {
-  grid-area: matches-container;  
-}
-
-.filter {
-  grid-area: filter;
-}
-
 .filter__content {
   background-color: whitesmoke;
-}
-
-.header {
-  grid-area: header;
 }
 
 .checkbox {
@@ -75,36 +53,22 @@ body {
   grid-template-rows: auto;
 }
 
-.matches {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: min-content auto;
-  grid-template-areas: 
-    "season-head"
-    "games"
-    "info"
+.season-head {
+  margin: 0 0 2px 0;
 }
 
-.season-head {
-  grid-area: season-head;
-  font-size: 24px;
-  margin: 6px 0 2px 0;
+.matches {
+  display: grid;
 }
 
 .games-dots {
-  grid-area: games;
   display: grid;
   grid-template-columns: repeat(27, min-content);
   grid-template-rows: auto;
   justify-self: center;
 }
 
-.games-table {
-  grid-area: games;
-}
 
-
-/*  */
 .grid-match {
   height: 35px;
   width: 35px;
@@ -137,7 +101,6 @@ body {
 
 .faux-link {
   text-decoration: underline;
-  font-size: 18px;
   margin: 0 0 0 10px;
 }
 
@@ -152,7 +115,6 @@ body {
 
 /* Footer */
 .footer {
-  grid-area: footer;
   text-align: center;
 }
 
@@ -165,10 +127,10 @@ body {
 }
 
 /* Data table */
-table {
-  margin: 0 40px 20px 0;
+.table {
+  max-width: 70%;
+  margin: auto;
   font-size: 14px;
-  grid-area: info;
   border-collapse: collapse;
 }
 
@@ -179,7 +141,7 @@ td, th {
 
 th {
   background-color: ghostwhite;
-  border-bottom: 2px dotted #131313;
+  border-bottom: 2px #131313;
 }
 
 td {
@@ -188,16 +150,8 @@ td {
 
 /* Info modal */
 .modal {
-  grid-area: info;
-  position: relative;
-  justify-self: center;
   width: 70%;
   margin: 36px 30px;
-}
-
-.bounding-pixel {
-  grid-area: info;
-  color: white;
 }
 
 .modal-content {

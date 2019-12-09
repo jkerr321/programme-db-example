@@ -11,13 +11,6 @@ if (document.querySelector('.js-modal')) {
 	const wantToggles = document.querySelectorAll('.js-wants-toggle');
 	const filterToggle = document.querySelector('.js-filter-toggle');
 
-	const hideInitialModal = () => {
-		const modalContentInitial = document.querySelector('.js-modal-initial');
-		if (!modalContentInitial.classList.contains('hidden')) {
-			modalContentInitial.classList.add('hidden');
-		}
-	};
-
 	const getModalData = (event) => {
 		return {
 			season: event.srcElement.attributes['data-season'].value,
@@ -37,23 +30,11 @@ if (document.querySelector('.js-modal')) {
 		};
 	};
 
-	const positionModal = () => {
-		// to do - put this in sep function
-		const boundingPixel = document.querySelector('.js-bounding-pixel').getBoundingClientRect();
-		let top = boundingPixel.top;
-		let offset = 0;
-		if (top <= 0) {
-			offset = 0 - top;
-		}
-		modal.setAttribute('style', `top:${offset}px`);
-	};
-
-	// NB Alas this isn't merged with functionality in toggleView because the modal is shown on load
 	const showInfoModal = (event) => {
-		hideInitialModal();
 		const modalInfo = getModalData(event);
 		populateModalData(modalInfo);
-		positionModal();
+		const season = getSeasonContainer(event.path);
+		season.appendChild(modal);
 		populateForm(modalInfo);
 		hideForm();
 		showModalInfo();
