@@ -116,6 +116,11 @@ body {
   font-weight: strong;
 }
 
+.check-icon {
+  max-width: 20px;
+  vertical-align: baseline;
+  margin: 0 4px 0 0;
+}
 
 /* Footer */
 .footer {

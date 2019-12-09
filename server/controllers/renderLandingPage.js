@@ -74,6 +74,9 @@ const getFullListData = (rows) => {
 		const values = rows.reduce((seasonsArray, row) => {
 			seasonsArray.forEach(obj => {
 				if (row.season === obj.season) {
+                    if (row.gotwant === 'Want' && !obj.isNotComplete) {
+                        obj.isNotComplete = true;
+                    }
 					obj.matches.push({
 						season: row.season,
 						league: row.league,
@@ -95,9 +98,9 @@ const getFullListData = (rows) => {
 				}
 			});
 			return seasonsArray;
-		}, seasonsArray);
+        }, seasonsArray);
 
-		return values;
+        return values;
 	} catch (err) {
 		console.error('getData error', err);
 	}

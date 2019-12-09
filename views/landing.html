@@ -49,14 +49,19 @@
     <div class="matches section" data-season="{{season_string}}">
         <div class="season-head">
             <span class="typography--large">{{season}}</span>
+            {{#unless isNotComplete}}
+            <span><img class="check-icon" src="/check-icon.png" alt="check mark icon to indicate programme collection for the season is complete"></span>
+            {{/unless}}
             <span class="js-table-toggle faux-link">
                 <span class="js-show-more">Show More</span>
                 <span class="js-show-less hidden">Show Less</span>
             </span>
+            {{#if isNotComplete}}
             <span class="js-wants-toggle faux-link hidden">
                 <span class="js-show-wants">Show Wants</span>
                 <span class="js-show-all hidden">Show All</span>
             </span>
+            {{/if}}
         </div>
         <div class="games-dots js-games-dots">
         {{#matches}}

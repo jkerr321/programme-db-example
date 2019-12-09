@@ -1,19 +1,13 @@
 TODO
 
 Form
-- Default to table view on filter data
-- show modal under each section
 - filter alphabetically up and down rather than horizontal
-- style table col width
 - transition on show and hide
-- style modal
-- style form
 - Set up website
 - readme
 - design logo
-- linting
+- style table col width
 - tidy up code - delete all the stuff not being used
-- do icon if season complete
 - do progress bar at the top?
 
 data -

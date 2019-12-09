@@ -208,11 +208,11 @@ if (document.querySelector('.js-modal')) {
 		if (event.srcElement.classList.contains('js-show-more')) {
 			dots.classList.add('hidden');
 			table.classList.remove('hidden');
-			wantsToggle.classList.remove('hidden');
+			if (wantsToggle) { wantsToggle.classList.remove('hidden') };
 		} else {
 			table.classList.add('hidden');
 			dots.classList.remove('hidden');
-			wantsToggle.classList.add('hidden');
+			if (wantsToggle) { wantsToggle.classList.add('hidden') };
 		}
 
 		toggleSpan(event.srcElement);
