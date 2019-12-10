@@ -1,7 +1,7 @@
 TODO
 
 Form
-- if data is filtered, have option to remove filter
+- sort out footer - grid?
 - links and buttons not working on mobile - fix
 - modal to push page down rather than up
 - on table view, if match is clicked on, do edit inline?

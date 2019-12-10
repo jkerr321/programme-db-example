@@ -123,21 +123,25 @@ module.exports = async (req, res) => {
 		const rows = await getRows('FullList');
 		const seasonData = getUniqueList(rows, 'season');
 		const opponentData = getUniqueList(rows, 'opponent').sort();
-        let allData;
+        let renderData;
 
 		if (req.method === 'POST') {
 			if (req.body.filter) {
 				const filteredRows = await filterRows(rows, req.body);
-                allData = await getFullListData(filteredRows);
+                const allData = await getFullListData(filteredRows);
+                const isFiltered = true;
+                renderData = { seasonData, opponentData, allData, isFiltered };
 			} else {
 				await updateSpreadsheet(rows, req.body);
 				const updatedRows = await getRows('FullList');
-				allData = await getFullListData(updatedRows);
+                const allData = await getFullListData(updatedRows);
+                renderData = { seasonData, opponentData, allData };
 			}
 		} else {
-			allData = await getFullListData(rows, seasonData);
+            const allData = await getFullListData(rows, seasonData);
+            renderData = { seasonData, opponentData, allData };
 		}
-		return res.render('landing', { seasonData, opponentData, allData });
+		return res.render('landing', renderData);
 	} catch (err) {
 		console.error('render error', err);
 	}

@@ -50,6 +50,10 @@ body {
   background-color: #131313;
 }
 
+.filter {
+  margin: 0 0 20px 0;
+}
+
 .filter__content {
   background-color: whitesmoke;
 }

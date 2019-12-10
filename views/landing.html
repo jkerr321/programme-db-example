@@ -8,6 +8,11 @@
         <span class="hidden">Hide Filter <<</span>
     </div>
     <div class="section js-filter-form filter__content hidden">
+        {{#if isFiltered}}
+        <form class="section" action="/" method="POST">
+            <button class="button" type="submit">Remove Filter</button>
+        </form>
+        {{/if}}
         <form class="section" action="/" method="POST">
             <div class="section">
                 <label for="got">Got</label>
