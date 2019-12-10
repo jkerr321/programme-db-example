@@ -31,7 +31,7 @@ if (document.querySelector('.js-modal')) {
 	const showInfoModal = (event) => {
 		const modalInfo = getModalData(event);
 		populateModalData(modalInfo);
-		const season = getSeasonContainer(event.path);
+		const season = getSeasonContainer(event);
 		season.appendChild(modal);
 		populateForm(modalInfo);
 		hideForm();
@@ -170,20 +170,23 @@ if (document.querySelector('.js-modal')) {
 		}
 	};
 
-	const getSeasonContainer = eventPath => {
-		//TODO make this a reduce
+	const getSeasonContainer = (event) => {
 		let seasonContainer;
-		eventPath.forEach(element => {
-			if (element.dataset && element.dataset.season) {
+		let element = event.target;
+		while (element) {
+			if (element.dataset && element.dataset.seasonString) {
 				seasonContainer = element;
+				break;
+			} else {
+				element = element.parentElement;
 			}
-		});
+		}
 		return seasonContainer;
 	};
 
 	const toggleWants = (event) => {
 		toggleSpan(event.srcElement);
-		const seasonContainer = getSeasonContainer(event.path);
+		const seasonContainer = getSeasonContainer(event);
 		const matchCells = seasonContainer.querySelectorAll('td');
 
 		if (event.srcElement.classList.contains('js-show-wants')) {
@@ -200,7 +203,7 @@ if (document.querySelector('.js-modal')) {
 
 	const toggleTable = (event) => {
 		hideModal();
-		const seasonContainer = getSeasonContainer(event.path);
+		const seasonContainer = getSeasonContainer(event);
 		const table = seasonContainer.querySelector('.js-games-table');
 		const dots = seasonContainer.querySelector('.js-games-dots');
 		const wantsToggle = seasonContainer.querySelector('.js-wants-toggle');

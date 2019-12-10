@@ -199,12 +199,9 @@ td {
 @media (max-width: 520px), screen and (max-device-width: 520px) {
 
   .modal {
-    margin: 57px auto;
+    width: 40%;
   }
 
-  table {
-    margin: 57px auto;
-  }
 }
 
 .hidden {
