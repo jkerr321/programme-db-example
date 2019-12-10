@@ -1,7 +1,6 @@
 TODO
 
 Form
-- filter alphabetically up and down rather than horizontal
 - transition on show and hide
 - Set up website
 - readme

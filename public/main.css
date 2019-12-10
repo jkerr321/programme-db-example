@@ -9,11 +9,14 @@ body {
 .typography--head {
   font-size: 60px;
   font-weight: bold;
-  margin: 20px auto;
 }
 
 .typography--small {
   font-size: 16px;;
+}
+
+.header {
+  margin: 40px auto;
 }
 
 .typography--large {
@@ -190,16 +193,6 @@ td {
 
 /* Little bit of responsiveness */
 @media (max-width: 520px), screen and (max-device-width: 520px) {
-  .layout {
-    display: grid;
-    grid-template-rows: repeat(4, min-content);
-    grid-template-columns: none;
-    grid-template-areas: 
-      "header"
-      "garden"
-      "info"
-      "footer";
-  }
 
   .modal {
     margin: 57px auto;
