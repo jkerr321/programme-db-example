@@ -74,9 +74,9 @@ const getFullListData = (rows) => {
 		const values = rows.reduce((seasonsArray, row) => {
 			seasonsArray.forEach(obj => {
 				if (row.season === obj.season) {
-                    if (row.gotwant === 'Want' && !obj.isNotComplete) {
-                        obj.isNotComplete = true;
-                    }
+					if (row.gotwant === 'Want' && !obj.isNotComplete) {
+						obj.isNotComplete = true;
+					}
 					obj.matches.push({
 						season: row.season,
 						league: row.league,
@@ -98,9 +98,9 @@ const getFullListData = (rows) => {
 				}
 			});
 			return seasonsArray;
-        }, seasonsArray);
+		}, seasonsArray);
 
-        return values;
+		return values;
 	} catch (err) {
 		console.error('getData error', err);
 	}
@@ -123,23 +123,23 @@ module.exports = async (req, res) => {
 		const rows = await getRows('FullList');
 		const seasonData = getUniqueList(rows, 'season');
 		const opponentData = getUniqueList(rows, 'opponent').sort();
-        let renderData;
+		let renderData;
 
 		if (req.method === 'POST') {
 			if (req.body.filter) {
 				const filteredRows = await filterRows(rows, req.body);
-                const allData = await getFullListData(filteredRows);
-                const isFiltered = true;
-                renderData = { seasonData, opponentData, allData, isFiltered };
+				const allData = await getFullListData(filteredRows);
+				const isFiltered = true;
+				renderData = { seasonData, opponentData, allData, isFiltered };
 			} else {
 				await updateSpreadsheet(rows, req.body);
 				const updatedRows = await getRows('FullList');
-                const allData = await getFullListData(updatedRows);
-                renderData = { seasonData, opponentData, allData };
+				const allData = await getFullListData(updatedRows);
+				renderData = { seasonData, opponentData, allData };
 			}
 		} else {
-            const allData = await getFullListData(rows, seasonData);
-            renderData = { seasonData, opponentData, allData };
+			const allData = await getFullListData(rows, seasonData);
+			renderData = { seasonData, opponentData, allData };
 		}
 		return res.render('landing', renderData);
 	} catch (err) {

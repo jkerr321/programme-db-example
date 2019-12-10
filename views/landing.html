@@ -60,12 +60,12 @@
             {{/unless}}
             <span class="js-table-toggle faux-link">
                 <span class="js-show-more">Show More</span>
-                <span class="js-show-less hidden">Show Less</span>
+                <span class="hidden">Show Less</span>
             </span>
             {{#if isNotComplete}}
             <span class="js-wants-toggle faux-link hidden">
                 <span class="js-show-wants">Show Wants</span>
-                <span class="js-show-all hidden">Show All</span>
+                <span class="hidden">Show All</span>
             </span>
             {{/if}}
         </div>
@@ -119,19 +119,19 @@
 {{/allData}}
 <div class="modal js-modal hidden">
     <div class="modal-content typography--small js-modal-content-info hidden">
-        <div class="modal-season js-modal-season"></div>
-        <div class="modal-league js-modal-league"></div>
-        <div class="modal-date js-modal-date"></div>
-        <div class="modal-opponent js-modal-opponent typography--large claret"></div>
-        <div class="modal-home_away js-modal-home_away"></div>
-        <div class="modal-score js-modal-score"></div>
-        <div class="modal-competition js-modal-competition"></div>
-        <div class="modal-match_notes js-modal-match_notes"></div>
+        <div class="js-modal-season"></div>
+        <div class="js-modal-league"></div>
+        <div class="js-modal-date"></div>
+        <div class="js-modal-opponent typography--large claret"></div>
+        <div class="js-modal-home_away"></div>
+        <div class="js-modal-score"></div>
+        <div class="js-modal-competition"></div>
+        <div class="js-modal-match_notes"></div>
         <div class="js-modal-content-editable">
             <div class="modal-got_want js-modal-got_want typography--large claret"></div>
-            <div class="modal-price js-modal-price"></div>
-            <div class="modal-notes js-modal-notes"></div>
-            <button class="button button--small border js-modal-edit-button">Edit</button>
+            <div class="js-modal-price"></div>
+            <div class="js-modal-notes"></div>
+            <button class="button js-modal-edit-button">Edit</button>
         </div>
         <form method="POST" class="section js-modal-content-form hidden" action="/{{seasonPath}}">
             <div>
@@ -151,7 +151,7 @@
                 <textarea name="programmeNotes" rows="4" id="form-notes" class="js-form-notes"></textarea>
             </div>
             <input id="form-id" name="id" class="js-form-id hidden"></input>
-            <button class="button button--small border" type="submit">Submit</button>
+            <button class="button" type="submit">Submit</button>
         </form>
     </div>
 </div>

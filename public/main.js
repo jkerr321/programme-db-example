@@ -40,8 +40,6 @@ if (document.querySelector('.js-modal')) {
 	};
 
 	const populateModalData = (modalInfo) => {
-		// changeBorderColour(modalInfo.colour);
-
 		//TODO DRY?
 		// get modal divs that we want to insert data into
 		const modalSeason = document.querySelector('.js-modal-season');
@@ -129,7 +127,7 @@ if (document.querySelector('.js-modal')) {
 		if (!modal.classList.contains('hidden')) {
 			modal.classList.add('hidden');
 		}
-	}
+	};
 
 	//TODO dry out toggle functions - can they be abstracted?
 	const toggleFilter = (event) => {
@@ -139,25 +137,6 @@ if (document.querySelector('.js-modal')) {
 			filter.classList.remove('hidden');
 		} else {
 			filter.classList.add('hidden');
-		}
-	};
-
-	const changeBorderColour = newColour => {
-		if(newColour) {
-			modalContentInfo.setAttribute('style', `border: 20px solid ${newColour}`);
-			modalContentForm.setAttribute('style', `border: 20px solid ${newColour}`);
-		} else {
-			// remove previously set colour so form goes back to default border colour
-			modalContentForm.removeAttribute('style');
-		}
-	};
-
-	//make this more functional - at least pass in form colour - is it being used elsewhere? If not contain it here
-	const changeFormColour = () => {
-		for (let i = 0; i < formColour.options.length; i++) {
-			if (formColour.options[i].selected) {
-				changeBorderColour(formColour.options[i].value);
-			}
 		}
 	};
 
@@ -211,11 +190,11 @@ if (document.querySelector('.js-modal')) {
 		if (event.srcElement.classList.contains('js-show-more')) {
 			dots.classList.add('hidden');
 			table.classList.remove('hidden');
-			if (wantsToggle) { wantsToggle.classList.remove('hidden') };
+			if (wantsToggle) { wantsToggle.classList.remove('hidden'); }
 		} else {
 			table.classList.add('hidden');
 			dots.classList.remove('hidden');
-			if (wantsToggle) { wantsToggle.classList.add('hidden') };
+			if (wantsToggle) { wantsToggle.classList.add('hidden'); }
 		}
 
 		toggleSpan(event.srcElement);

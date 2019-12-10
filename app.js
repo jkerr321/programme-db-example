@@ -4,12 +4,11 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const bodyParser = require('body-parser');
 const renderLandingPage = require('./server/controllers/renderLandingPage');
-const colours = require('./server/colours');
 
 app.engine('html', exphbs({
-    defaultLayout: 'main',
-    extname: '.html',
-    layoutsDir: 'views/layouts/'
+	defaultLayout: 'main',
+	extname: '.html',
+	layoutsDir: 'views/layouts/'
 }));
 
 app.set('view engine', 'html');
@@ -21,5 +20,5 @@ app.get('/', (req, res) => renderLandingPage(req, res));
 app.post('/', (req, res) => renderLandingPage(req, res));
 
 app.listen(process.env.PORT || 8001, () => {
-    console.log('dad-db: listening on port 8001');
+	console.log('dad-db: listening on port 8001');
 });
