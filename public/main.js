@@ -194,6 +194,8 @@ if (document.querySelector('.js-modal')) {
 		} else {
 			table.classList.add('hidden');
 			dots.classList.remove('hidden');
+			// when hiding table also unfilter 'wants' back to full list;
+			toggleWants(event);
 			if (wantsToggle) { wantsToggle.classList.add('hidden'); }
 		}
 
