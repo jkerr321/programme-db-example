@@ -6,10 +6,12 @@ if (document.querySelector('.js-modal')) {
 	const modalEditable = document.querySelector('.js-modal-content-editable');
 	const matches = document.querySelectorAll('.js-grid-match');
 	const editButton = document.querySelector('.js-modal-edit-button');
-	const formWant = document.querySelector('.js-form-want');
 	const tableToggles = document.querySelectorAll('.js-table-toggle');
 	const wantToggles = document.querySelectorAll('.js-wants-toggle');
 	const filterToggle = document.querySelector('.js-filter-toggle');
+
+	const hide = (element) => element.classList.add('hidden');
+	const show = (element) => element.classList.remove('hidden');
 
 	const getModalData = (event) => {
 		return {
@@ -36,7 +38,7 @@ if (document.querySelector('.js-modal')) {
 		populateForm(modalInfo);
 		hideForm();
 		showModalInfo();
-		modal.classList.remove('hidden');
+		show(modal);
 	};
 
 	const populateModalData = (modalInfo) => {
@@ -87,6 +89,7 @@ if (document.querySelector('.js-modal')) {
 
 	const populateForm = (modalInfo) => {
 		// get form divs that we want to insert data into
+		const formWant = document.querySelector('.js-form-want');
 		const formGot = document.querySelector('.js-form-got');
 		const formNotes = document.querySelector('.js-form-notes');
 		const formPrice = document.querySelector('.js-form-price');
@@ -109,23 +112,23 @@ if (document.querySelector('.js-modal')) {
 	};
 
 	const showForm = () => {
-		modalContentForm.classList.remove('hidden');
-		modalEditable.classList.add('hidden');
+		show(modalContentForm);
+		hide(modalEditable);
 	};
 
 	const hideForm = () => {
-		modalContentForm.classList.add('hidden');
-		modalEditable.classList.remove('hidden');
+		hide(modalContentForm);
+		show(modalEditable);
 	};
 
 	const showModalInfo = () => {
-		modalContentInfo.classList.remove('hidden');
-		modalContentForm.classList.add('hidden');
+		show(modalContentInfo);
+		hide(modalContentForm);
 	};
 
 	const hideModal = () => {
 		if (!modal.classList.contains('hidden')) {
-			modal.classList.add('hidden');
+			hide(modal);
 		}
 	};
 
@@ -134,18 +137,18 @@ if (document.querySelector('.js-modal')) {
 		toggleSpan(event.srcElement);
 		const filter = document.querySelector('.js-filter-form');
 		if(filter.classList.contains('hidden')) {
-			filter.classList.remove('hidden');
+			show(filter);
 		} else {
-			filter.classList.add('hidden');
+			hide(filter);
 		}
 	};
 
 	const toggleSpan = (srcElement) => {
-		srcElement.classList.add('hidden');
+		hide(srcElement);
 		if (srcElement.nextElementSibling) {
-			srcElement.nextElementSibling.classList.remove('hidden');
+			show(srcElement.nextElementSibling);
 		} else {
-			srcElement.previousElementSibling.classList.remove('hidden');
+			show(srcElement.previousElementSibling);
 		}
 	};
 
@@ -172,11 +175,11 @@ if (document.querySelector('.js-modal')) {
 			matchCells.forEach(cell => {
 				if (cell.innerHTML === 'Got') {
 					//TODO is this a better way of doing some of the other stuff?
-					cell.parentNode.classList.add('hidden');
+					hide(cell.parentNode);
 				}
 			});
 		} else {
-			matchCells.forEach(cell => cell.parentNode.classList.remove('hidden'));
+			matchCells.forEach(cell => show(cell.parentNode));
 		}
 	};
 
@@ -186,17 +189,24 @@ if (document.querySelector('.js-modal')) {
 		const table = seasonContainer.querySelector('.js-games-table');
 		const dots = seasonContainer.querySelector('.js-games-dots');
 		const wantsToggle = seasonContainer.querySelector('.js-wants-toggle');
+		const showAllSpan = seasonContainer.querySelector('.js-show-all');
 
 		if (event.srcElement.classList.contains('js-show-more')) {
-			dots.classList.add('hidden');
-			table.classList.remove('hidden');
-			if (wantsToggle) { wantsToggle.classList.remove('hidden'); }
+			hide(dots);
+			show(table);
+			if (wantsToggle) {
+				show(wantsToggle); 
+			}
 		} else {
-			table.classList.add('hidden');
-			dots.classList.remove('hidden');
-			// when hiding table also unfilter 'wants' back to full list;
+			if (wantsToggle) {
+				hide(wantsToggle);
+			}
+			hide(table);
+			show(dots);
+			
+			// when hiding table also unfilter 'wants' back to full list
 			toggleWants(event);
-			if (wantsToggle) { wantsToggle.classList.add('hidden'); }
+			toggleSpan(showAllSpan);
 		}
 
 		toggleSpan(event.srcElement);
