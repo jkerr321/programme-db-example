@@ -16,7 +16,7 @@ body {
 }
 
 .header {
-  margin: 40px auto;
+  margin: 64px auto 40px;
 }
 
 .typography--large {
@@ -194,4 +194,21 @@ td {
 
 .hidden {
   display: none;
+}
+
+.prog-img {
+  max-height: 413px;
+  position: absolute;
+  top: 10%;
+  opacity: 0.3;
+  z-index: -1;
+}
+.prog-img--left {
+  left: 18%;
+  transform: rotate(-25deg);
+}
+.prog-img--right {
+  transform: rotate(17deg);
+  top: -5%;
+  right: 18%;
 }
