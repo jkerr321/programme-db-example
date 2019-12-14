@@ -129,9 +129,9 @@ const toggleWants = (event) => {
 	if (event.srcElement.classList.contains('js-show-wants')) {
 		matchCells.forEach(cell => {
 			if (cell.innerHTML === 'Got') {
-				hide(cell.parentNode);
+				cell.parentNode.classList.add('hidden');
 			}
-		});
+			});
 	} else {
 		matchCells.forEach(cell => show(cell.parentNode));
 	}

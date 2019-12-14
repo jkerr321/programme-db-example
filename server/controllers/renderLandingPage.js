@@ -29,15 +29,7 @@ const getRows = async (sheetName) => {
 	await promisify(doc.useServiceAccountAuth)(config);
 	const info = await promisify(doc.getInfo)();
 
-	//TODO delete other sheets so this is the only one we have so we can delete this code
-	const sheet = info.worksheets.reduce((acc, worksheet) => {
-		if (worksheet.title === sheetName) {
-			acc = worksheet;
-		}
-		return acc;
-	}, {});
-
-	const rows = await promisify(sheet.getRows)({
+    const rows = await promisify(info.worksheets[0].getRows)({
 		'offset': 1,
 		'limit': 5000
 	});
@@ -119,7 +111,6 @@ const filterRows = async (rows, reqBody) => {
 
 module.exports = async (req, res) => {
 	try {
-		//TODO update andrews to use this as well - more succint code
 		const rows = await getRows('FullList');
 		const seasonData = getUniqueList(rows, 'season');
 		const opponentData = getUniqueList(rows, 'opponent').sort();
