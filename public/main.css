@@ -16,7 +16,8 @@ body {
 }
 
 .header {
-  margin: 64px auto 40px;
+  position: sticky;
+  margin: 40px auto 30px;
 }
 
 .typography--large {
@@ -79,6 +80,7 @@ body {
 
 .matches {
   display: grid;
+  background-color: rgba(255, 255, 255, .8);
 }
 
 .games-dots {
@@ -165,10 +167,12 @@ th {
 
 td {
   border: 0.5px dotted #131313;
+  background-color: white;
 }
 
 /* Info modal */
 .modal {
+  background-color: white;
   width: 25%;
   margin: 24px auto;
   border: 2px dotted;
@@ -197,18 +201,19 @@ td {
 }
 
 .prog-img {
-  max-height: 413px;
-  position: absolute;
-  top: 10%;
-  opacity: 0.3;
+  margin: 35px 0;
+  position: -webkit-sticky;
+  position: sticky;
+  max-height: 24em;
   z-index: -1;
 }
+
 .prog-img--left {
-  left: 18%;
+  top: 6%;
   transform: rotate(-25deg);
 }
+
 .prog-img--right {
-  transform: rotate(17deg);
-  top: -5%;
-  right: 18%;
+  transform: rotate(25deg);
+  top: -15%;
 }
