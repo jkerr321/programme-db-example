@@ -6,15 +6,11 @@ const wantToggles = document.querySelectorAll('.js-wants-toggle');
 const filterToggle = document.querySelector('.js-filter-toggle');
 const dataPoints = ['season', 'league', 'date', 'opponent', 'home_away', 'score', 'competition', 'match_notes', 'got_want', 'price', 'notes', 'id'];
 
-// TODO no query selectors on these do they need to be global?
-const modal = document.querySelector('.js-modal');
-const modalContentForm = document.querySelector('.js-modal-content-form');
-const modalEditable = document.querySelector('.js-modal-content-editable');
-
 const hide = (element) => element.classList.add('hidden');
 const show = (element) => element.classList.remove('hidden');
 
 const toggleClickableSpan = (element) => {
+	// e.g. toggle between 'Show More' / 'Show Less' clickable headings in the HTML
 	hide(element);
 	if (element.nextElementSibling) {
 		show(element.nextElementSibling);
@@ -25,6 +21,7 @@ const toggleClickableSpan = (element) => {
 
 const getSeasonContainer = (event) => {
 	let seasonContainer;
+	// workaround to emulate event.path which is not available in Safari
 	let element = event.target;
 	while (element) {
 		if (element.dataset && element.dataset.seasonString) {
@@ -38,15 +35,17 @@ const getSeasonContainer = (event) => {
 };
 
 const showModal = (event) => {
+	const modal = document.querySelector('.js-modal');
+	const modalContentForm = document.querySelector('.js-modal-content-form');
+	const modalEditable = document.querySelector('.js-modal-content-editable');
 	const season = getSeasonContainer(event);
-	const modalInfoContainer = document.querySelector('.js-modal-content-info');
-	let modalInfo = {};
-
+	
 	// modalInfo = {
 	// 	season: '1908/09',
 	// 	opponent: 'Tranmere Rovers',
 	// 	etc...
 	// }
+	let modalInfo = {};
 	dataPoints.forEach(dataPoint => {
 		modalInfo[dataPoint] = event.srcElement.attributes[`data-${dataPoint}`].value;
 	});
@@ -54,13 +53,11 @@ const showModal = (event) => {
 	populateModalData(modalInfo);
 	season.appendChild(modal); // position modal under correct season on page
 
-	// populate form inside modal then hide;
 	populateForm(modalInfo);
+	
+	// in case modal has been opened elsewhere and edit button clicked, reset to show info not form
 	hide(modalContentForm);
 	show(modalEditable);
-
-	show(modalInfoContainer);
-	hide(modalContentForm);
 
 	show(modal);
 };
@@ -85,23 +82,21 @@ const populateModalData = (modalInfo) => {
 };
 
 const populateForm = (modalInfo) => {
-	// get form divs that we want to insert data into
+	// set placeholder values
+	dataPoints.forEach(dataPoint => {
+		if (document.querySelector(`.js-form-${dataPoint}`)) {
+			document.querySelector(`.js-form-${dataPoint}`).placeholder = `${modalInfo[dataPoint]}` || '';
+		}
+	});
+
 	const formWant = document.querySelector('.js-form-want');
 	const formGot = document.querySelector('.js-form-got');
-	const formNotes = document.querySelector('.js-form-notes');
-	const formPrice = document.querySelector('.js-form-price');
-	const formId = document.querySelector('.js-form-id');
-
-	// set form placeholder values
-	formPrice.placeholder = modalInfo.price || '';
-	formNotes.placeholder = modalInfo.notes || '';
-	formId.value = modalInfo.id || '';
 
 	// remove current radio button selection
 	formGot.removeAttribute('checked');
 	formWant.removeAttribute('checked');
 
-	if (modalInfo.gotWant === 'got') {
+	if (modalInfo.got_want === 'Got') {
 		formGot.setAttribute('checked', '');
 	} else {
 		formWant.setAttribute('checked', '');
@@ -109,6 +104,9 @@ const populateForm = (modalInfo) => {
 };
 
 const showForm = () => {
+	const modalContentForm = document.querySelector('.js-modal-content-form');
+	const modalEditable = document.querySelector('.js-modal-content-editable');
+
 	show(modalContentForm);
 	hide(modalEditable);
 };
@@ -131,7 +129,6 @@ const toggleWants = (event) => {
 	if (event.srcElement.classList.contains('js-show-wants')) {
 		matchCells.forEach(cell => {
 			if (cell.innerHTML === 'Got') {
-				//TODO is this a better way of doing some of the other stuff?
 				hide(cell.parentNode);
 			}
 		});
@@ -146,6 +143,7 @@ const toggleTable = (event) => {
 	const dots = seasonContainer.querySelector('.js-games-dots');
 	const wantsToggle = seasonContainer.querySelector('.js-wants-toggle');
 	const showAllSpan = seasonContainer.querySelector('.js-show-all');
+	const modal = document.querySelector('.js-modal');
 	
 	if (!modal.classList.contains('hidden')) { hide(modal) };
 	if (event.srcElement.classList.contains('js-show-more')) {
