@@ -222,6 +222,10 @@ td {
     font-size: 100%;
   }
 
+  .table {
+    width: 100%;
+  }
+
   .hidden-mobile {
     display: none;
   }
