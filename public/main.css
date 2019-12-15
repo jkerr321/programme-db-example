@@ -167,7 +167,11 @@ body {
 /* Footer */
 .footer {
   text-align: center;
-  margin-top: 5.6rem;
+  margin: 8.6rem 0 0 0;
+}
+
+.footer a{
+  color: #131313;
 }
 
 /* Data table */
@@ -214,6 +218,13 @@ td {
 
 .hidden {
   display: none;
+}
+
+.sticky-bottom {
+  position: sticky;
+  bottom: 14px;
+  margin-left: 85%;
+  color: #131313;
 }
 
 /* Little bit of responsiveness */
