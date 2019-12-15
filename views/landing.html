@@ -89,9 +89,9 @@
                         <th>League Position</th>
                         <th>Points</th>
                         <th>Competition</th>
-                        <th>Match Notes</th>
-                        <th>Programme Price</th>
-                        <th>Programme Notes</th>
+                        <th class="hidden-mobile">Match Notes</th>
+                        <th class="hidden-mobile">Programme Price</th>
+                        <th class="hidden-mobile">Programme Notes</th>
                         <th class="hidden">Got / Want</th>
                     </tr>
                 </thead>
@@ -107,9 +107,9 @@
                         <td>{{this.position}}</td>
                         <td>{{this.points}}</td>
                         <td>{{this.competition}}</td>
-                        <td>{{this.match_notes}}</td>
-                        <td>{{this.price}}</td>
-                        <td>{{this.notes}}</td>
+                        <td class="hidden-mobile">{{this.match_notes}}</td>
+                        <td class="hidden-mobile">{{this.price}}</td>
+                        <td class="hidden-mobile">{{this.notes}}</td>
                         <td class="hidden">{{this.got_want}}</td>
                     </tr>
                     {{/matches}}
