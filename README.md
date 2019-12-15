@@ -1,7 +1,7 @@
 
 David's Cobblers Database
 ==========
-A UI for viewing and managing the football programme data in a google sheet
+A UI for viewing and managing the football programme collection data contained in a google sheet
 
 Table of Contents
 -----------------
@@ -9,10 +9,8 @@ Table of Contents
  - [Why](#why-does-this-exist)
  - [Requirements](#requirements)
  - [Usage](#usage)
- - [Troubleshooting](#Troubleshooting)
  - [Development](#Development)
  - [Things still to do](#things-still-to-do)
- - [A note on the name](#a-note-on-the-name)
 
 Why does this exist
 ------------
@@ -39,6 +37,10 @@ To create a smiliar UI from your own data you will need:
     - Programme Notes
  - A google project connected to your sheet (I used [this very helpful Twilio tutorial](https://www.youtube.com/watch?v=UGN6EUi4Yio) )
  - Your google project credentials saved as environment variables
+
+Usage
+-----
+via the browser: https://davidscobblersdatabase.co.uk
 
 Development
 -----
