@@ -6,8 +6,8 @@ const wantToggles = document.querySelectorAll('.js-wants-toggle');
 const filterToggle = document.querySelector('.js-filter-toggle');
 const dataPoints = ['season', 'league', 'date', 'opponent', 'home_away', 'score', 'competition', 'match_notes', 'got_want', 'price', 'notes', 'id'];
 
-const hide = (element) => element.classList.add('hidden');
 const show = (element) => element.classList.remove('hidden');
+const hide = (element) => element.classList.add('hidden');
 
 const toggleClickableSpan = (element) => {
 	// e.g. toggle between 'Show More' / 'Show Less' clickable headings in the HTML
