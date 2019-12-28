@@ -60,6 +60,22 @@ const showModal = (event) => {
 	show(modalEditable);
 
 	show(modal);
+
+	// TODO THIS DOESN'T WORK
+	// const modalContent = modal.querySelector('.modal-content');
+	// const position = modalContent.getBoundingClientRect();
+	// console.log('==================');
+	// console.log('modal', modal);
+	// console.log('==================');
+	
+	// console.log('==================');
+	// console.log('position', position);
+	// console.log('==================');
+	// window.scrollTo({
+	// 	top: position.top,
+	// 	left: position.left,
+	// 	behavior: 'smooth'
+	// });
 };
 
 const populateModalData = (modalInfo) => {
@@ -88,6 +104,8 @@ const populateForm = (modalInfo) => {
 			document.querySelector(`.js-form-${dataPoint}`).placeholder = `${modalInfo[dataPoint]}` || '';
 		}
 	});
+
+	document.querySelector(`.js-form-id`).value = modalInfo.id;
 
 	const formWant = document.querySelector('.js-form-want');
 	const formGot = document.querySelector('.js-form-got');
