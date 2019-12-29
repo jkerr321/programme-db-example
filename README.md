@@ -56,6 +56,7 @@ To run locally:
 Things still to do
 ---------------------
 
+- Print view
 - modal to push page down rather than up - use onclick window scrollTo - with propagate
 - on table view, if match is clicked on, do edit inline?
 - transition on show and hide
