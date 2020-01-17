@@ -4,6 +4,7 @@ const editButton = document.querySelector('.js-modal-edit-button');
 const tableToggles = document.querySelectorAll('.js-table-toggle');
 const wantToggles = document.querySelectorAll('.js-wants-toggle');
 const filterToggle = document.querySelector('.js-filter-toggle');
+const printViewToggle = document.querySelector('.js-print-view-toggle');
 const dataPoints = ['season', 'league', 'date', 'opponent', 'home_away', 'score', 'competition', 'match_notes', 'got_want', 'price', 'notes', 'id'];
 
 const show = (element) => element.classList.remove('hidden');
@@ -184,8 +185,23 @@ const toggleTable = (event) => {
 	toggleClickableSpan(event.srcElement);
 };
 
+const togglePrintView = (event) => {
+	const printView = document.querySelector('.js-print-view');
+	const richView = document.querySelector('.js-rich-view');
+	toggleClickableSpan(event.srcElement);
+
+	if (printView.classList.contains('hidden')) {
+		hide(richView);
+		show(printView);
+	} else {
+		hide(printView);
+		show(richView);
+	}
+};
+
 tableToggles.forEach(toggle => toggle.addEventListener('click', e => toggleTable(e)));
 matches.forEach(match => match.addEventListener('click', e => showModal(e)));
 wantToggles.forEach(toggle => toggle.addEventListener('click', e => toggleWants(e)));
 editButton.addEventListener('click', e => showForm(e));
 filterToggle.addEventListener('click', e => toggleFilter(e));
+printViewToggle.addEventListener('click', e => togglePrintView(e));

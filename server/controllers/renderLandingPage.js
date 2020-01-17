@@ -109,6 +109,15 @@ const filterRows = async (rows, reqBody) => {
 	});
 };
 
+const getFilterString = (reqBody) => {
+    let result = [];
+    if (reqBody.seasonFilter) { result.push(`${reqBody.seasonFilter}`); }
+    if (reqBody.opponentFilter) { result.push(`${reqBody.opponentFilter}`); }
+    if (reqBody.gotWantFilter) { result.push(`${reqBody.gotWantFilter}`); }
+    if (reqBody.homeAwayFilter) { result.push(`${reqBody.homeAwayFilter}`); }
+    return result;
+}
+
 module.exports = async (req, res) => {
 	try {
 		const rows = await getRows('FullList');
@@ -120,8 +129,9 @@ module.exports = async (req, res) => {
 			if (req.body.filter) {
 				const filteredRows = await filterRows(rows, req.body);
 				const allData = await getFullListData(filteredRows);
-				const isFiltered = true;
-				renderData = { seasonData, opponentData, allData, isFiltered };
+                const isFiltered = true;
+                const appliedFilter = getFilterString(req.body);
+				renderData = { seasonData, opponentData, allData, isFiltered, appliedFilter };
 			} else {
 				await updateSpreadsheet(rows, req.body);
 				const updatedRows = await getRows('FullList');

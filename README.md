@@ -57,7 +57,8 @@ Things still to do
 ---------------------
 
 - Print view
+    - add 'back' button
+    - add 'Showing: season: 1998, wants, home' etc
 - modal to push page down rather than up - use onclick window scrollTo - with propagate
 - on table view, if match is clicked on, do edit inline?
 - transition on show and hide
-
