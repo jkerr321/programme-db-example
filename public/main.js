@@ -204,4 +204,4 @@ matches.forEach(match => match.addEventListener('click', e => showModal(e)));
 wantToggles.forEach(toggle => toggle.addEventListener('click', e => toggleWants(e)));
 editButton.addEventListener('click', e => showForm(e));
 filterToggle.addEventListener('click', e => toggleFilter(e));
-printViewToggle.addEventListener('click', e => togglePrintView(e));
+if(printViewToggle) { printViewToggle.addEventListener('click', e => togglePrintView(e)); }
