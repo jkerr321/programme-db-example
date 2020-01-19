@@ -25,7 +25,7 @@ const updateSpreadsheet = async (rows, reqBody) => {
 };
 
 const getRows = async (sheetName) => {
-	const doc = new GoogleSpreadsheet('1igrPkooUEO7EhljF3tjjuuZf67smjO9obRVngghhYu8');
+	const doc = new GoogleSpreadsheet('1iljvKD16jiAuYatLvRpmpc6lYwIOXqYevYlK0YZKOk0');
 	await promisify(doc.useServiceAccountAuth)(config);
 	const info = await promisify(doc.getInfo)();
 
